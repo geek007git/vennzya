@@ -1,0 +1,174 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/*
+  Vennzya brand tokens.
+  The whole site reads from these — swapping in the final brand palette or
+  typeface is an edit to this file alone, not a hunt through components.
+*/
+
+@theme {
+  /* Espresso → cream brand scale */
+  --color-espresso-50: #faf6f1;
+  --color-espresso-100: #f1e9df;
+  --color-espresso-200: #e2d3c1;
+  --color-espresso-300: #cdb79d;
+  --color-espresso-400: #b39877;
+  --color-espresso-500: #96795a;
+  --color-espresso-600: #7a6047;
+  --color-espresso-700: #614a37;
+  --color-espresso-800: #4a3728;
+  --color-espresso-900: #38291d;
+  --color-espresso-950: #221810;
+
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #f7f1e8;
+  --color-cream-200: #efe5d6;
+
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 0.75rem;
+
+  /* Deliberately soft: premium reads as restraint, not drop shadows. */
+  --shadow-card: 0 1px 2px rgb(34 24 16 / 0.04), 0 8px 24px -12px rgb(34 24 16 / 0.12);
+  --shadow-card-hover: 0 2px 4px rgb(34 24 16 / 0.06), 0 16px 40px -16px rgb(34 24 16 / 0.18);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Semantic aliases — component code references these, never raw hex. */
+:root {
+  --background: var(--color-cream-100);
+  --foreground: var(--color-espresso-950);
+  --card: #ffffff;
+  --card-foreground: var(--color-espresso-950);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-espresso-950);
+  --primary: var(--color-espresso-800);
+  --primary-foreground: var(--color-cream-50);
+  --secondary: var(--color-espresso-100);
+  --secondary-foreground: var(--color-espresso-900);
+  --muted: var(--color-espresso-100);
+  --muted-foreground: var(--color-espresso-600);
+  --accent: var(--color-espresso-200);
+  --accent-foreground: var(--color-espresso-950);
+  --destructive: #b3261e;
+  --destructive-foreground: var(--color-cream-50);
+  --success: #2f6b4f;
+  --border: var(--color-espresso-200);
+  --input: var(--color-espresso-200);
+  --ring: var(--color-espresso-500);
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Keyboard users get a visible ring everywhere, without boxing mouse users. */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-espresso-800);
+    color: var(--color-cream-50);
+  }
+}
+
+@layer utilities {
+  /* One source of truth for page gutters and section rhythm. */
+  .container-page {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  .section-y {
+    padding-block: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-y {
+      padding-block: 5.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
