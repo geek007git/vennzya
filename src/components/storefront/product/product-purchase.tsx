@@ -1,11 +1,12 @@
 'use client'
 
-import { Minus, Plus, ShoppingBag } from 'lucide-react'
+import { Check, Minus, Plus, ShoppingBag } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { WhatsAppIcon } from '@/components/ui/brand-icons'
 import { Button } from '@/components/ui/button'
+import { DynamicButton } from '@/components/ui/dynamic-button'
 import { Badge } from '@/components/ui/primitives'
 import { formatInrCompact } from '@/lib/format'
 import { siteConfig, whatsappLink } from '@/lib/site-config'
@@ -50,9 +51,21 @@ function isValueAvailable(
   })
 }
 
+/** How long the add-to-bag button stays in its confirmed state. */
+const ADDED_MS = 1600
+
 export function ProductPurchase({ product }: { product: ProductDetailView }) {
   const router = useRouter()
   const addLine = useCartStore((state) => state.addLine)
+  const [justAdded, setJustAdded] = useState(false)
+  const addedTimer = useRef<number | null>(null)
+
+  useEffect(
+    () => () => {
+      if (addedTimer.current !== null) window.clearTimeout(addedTimer.current)
+    },
+    [],
+  )
 
   const [selection, setSelection] = useState<Selection>(() => {
     // Preselect single-choice axes; the shopper shouldn't click what can't vary.
@@ -114,6 +127,11 @@ export function ProductPurchase({ product }: { product: ProductDetailView }) {
     )
 
     toast.success('Added to bag', { description: product.name })
+
+    setJustAdded(true)
+    if (addedTimer.current !== null) window.clearTimeout(addedTimer.current)
+    addedTimer.current = window.setTimeout(() => setJustAdded(false), ADDED_MS)
+
     return true
   }
 
@@ -236,16 +254,18 @@ export function ProductPurchase({ product }: { product: ProductDetailView }) {
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button
-            size="lg"
+          <DynamicButton
             className="flex-1"
             data-testid="add-to-bag"
             disabled={product.isOutOfStock || (variant !== null && !canAdd)}
+            icon={justAdded ? <Check aria-hidden /> : <ShoppingBag aria-hidden />}
             onClick={addToCart}
+            size="lg"
+            stateKey={justAdded ? 'added' : 'add'}
+            width="full"
           >
-            <ShoppingBag aria-hidden />
-            Add to bag
-          </Button>
+            {justAdded ? 'Added to bag' : 'Add to bag'}
+          </DynamicButton>
           <Button
             size="lg"
             variant="outline"

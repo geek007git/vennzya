@@ -2,6 +2,7 @@ import { CheckCircle2, Clock, Package, Truck } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { CopyOrderNumber } from '@/components/storefront/checkout/copy-order-number'
 import { OrderReceipt } from '@/components/storefront/checkout/order-receipt'
 import { WhatsAppIcon } from '@/components/ui/brand-icons'
 import { Button } from '@/components/ui/button'
@@ -74,6 +75,10 @@ export default async function OrderConfirmationPage({ params, searchParams }: Pa
               {PAYMENT_LABEL[order.paymentStatus] ?? order.paymentStatus}
             </Badge>
           </p>
+
+          <div className="mt-2 flex justify-center">
+            <CopyOrderNumber orderNumber={order.orderNumber} />
+          </div>
         </div>
 
         <OrderReceipt
