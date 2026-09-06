@@ -8,6 +8,7 @@ import { type Money, money, round2, sum, toNumber, toPaise, ZERO } from '@/lib/m
 import { siteConfig } from '@/lib/site-config'
 import { catalogService } from '@/modules/catalog/service'
 import { couponRulesFrom, evaluateCoupon } from '@/modules/discounts/coupon-engine'
+import { notifications } from '@/modules/notifications/service'
 import { nextOrderNumber } from '@/modules/orders/order-number'
 import { createRazorpayOrder, isRazorpayConfigured } from '@/modules/payments/razorpay'
 import { db } from '@/server/db'
@@ -435,6 +436,10 @@ export const checkoutService = {
     )
 
     if (isCod) {
+      // COD is confirmed on placement; card/UPI waits for capture, which
+      // sends from `confirmPayment` instead.
+      await notifications.orderConfirmed(order.id)
+
       return {
         orderId: order.id,
         orderNumber: order.orderNumber,

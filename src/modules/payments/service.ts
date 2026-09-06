@@ -1,6 +1,7 @@
 import type { Prisma } from '@/generated/prisma/client'
 import { logger } from '@/lib/logger'
 import { catalogService } from '@/modules/catalog/service'
+import { notifications } from '@/modules/notifications/service'
 import { db } from '@/server/db'
 
 /**
@@ -71,6 +72,9 @@ export async function confirmPayment(params: {
   })
 
   logger.info({ orderNumber: payment.order.orderNumber }, 'payment confirmed')
+
+  // Inside the guard, so a redelivered webhook cannot send a second copy.
+  await notifications.orderConfirmed(payment.order.id)
 
   return {
     outcome: 'confirmed',

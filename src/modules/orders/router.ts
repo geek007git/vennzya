@@ -2,6 +2,7 @@ import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { logger } from '@/lib/logger'
 import { toNumber } from '@/lib/money'
+import { notifications } from '@/modules/notifications/service'
 import type { db } from '@/server/db'
 import { protectedProcedure, publicProcedure, requirePermission, router } from '@/server/trpc/init'
 
@@ -327,6 +328,12 @@ export const ordersRouter = router({
           entityId: input.orderId,
           afterJson: { courierName: input.courierName, trackingNumber: input.trackingNumber },
         },
+      })
+
+      await notifications.orderShipped(input.orderId, {
+        courierName: input.courierName,
+        trackingNumber: input.trackingNumber,
+        trackingUrl: input.trackingUrl ?? null,
       })
 
       return tracking

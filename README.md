@@ -28,6 +28,9 @@ Built as a modular monolith: one Next.js deployment, split internally into featu
 - Razorpay (UPI / cards / netbanking) **and** Cash on Delivery
 - Oversell-proof stock: atomic conditional decrement inside the order transaction, with every
   stock change journalled in `StockMovement`
+- Transactional email (Resend): order confirmed on COD placement or online capture, shipped when
+  admin attaches tracking. Without `RESEND_API_KEY` the send is logged, not attempted, so local
+  checkout still works. Preview the templates with `pnpm email:dev`
 - Idempotent payment confirmation — the browser callback and the Razorpay webhook both converge
   on one guarded state transition, so a closed tab or a redelivered webhook can't double-process
 
