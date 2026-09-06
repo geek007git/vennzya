@@ -659,6 +659,503 @@ const PRODUCTS: ProductSeed[] = [
       { sku: 'VZ-BLT-ESP-OS', price: 1099, stock: 10, options: [['Colour', 'Espresso']] },
     ],
   },
+  {
+    slug: 'noir-anarkali-kurta-set',
+    name: 'Noir Anarkali Kurta Set',
+    categorySlug: 'kurtas-suits',
+    shortDescription: 'A floor-length anarkali with churidar and a tissue dupatta.',
+    description:
+      'Cut long and full through the skirt, this anarkali holds its shape without stiffening — the panels are seamed rather than gathered, so the flare falls cleanly from the yoke. It comes with a matching churidar and a fine tissue dupatta. The black is deep and even, dyed in small lots to keep it consistent.',
+    hsnCode: '6204',
+    gstRatePercent: 12,
+    brand: 'Vennzya',
+    careInstructions: 'Dry clean only. Store folded with the dupatta kept separate.',
+    seoTitle: 'Noir Anarkali Kurta Set with Dupatta',
+    seoDescription:
+      'Floor-length black anarkali with churidar and tissue dupatta. Sizes XS-XXL, delivered across India.',
+    isFeatured: true,
+    optionNames: ['Size', 'Colour'],
+    images: [img('photo-1594633312681-425c7b97ccd1'), img('photo-1581044777550-4cfa60707c03')],
+    variants: [
+      {
+        sku: 'VZ-ANK-NOI-S',
+        price: 3499,
+        compareAtPrice: 4299,
+        stock: 8,
+        options: [
+          ['Size', 'S'],
+          ['Colour', 'Noir'],
+        ],
+      },
+      {
+        sku: 'VZ-ANK-NOI-M',
+        price: 3499,
+        compareAtPrice: 4299,
+        stock: 12,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Noir'],
+        ],
+      },
+      {
+        sku: 'VZ-ANK-NOI-L',
+        price: 3499,
+        compareAtPrice: 4299,
+        stock: 6,
+        options: [
+          ['Size', 'L'],
+          ['Colour', 'Noir'],
+        ],
+      },
+      {
+        sku: 'VZ-ANK-NOI-XL',
+        price: 3499,
+        stock: 3,
+        options: [
+          ['Size', 'XL'],
+          ['Colour', 'Noir'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'rose-cotton-straight-kurta',
+    name: 'Rose Cotton Straight Kurta',
+    categorySlug: 'kurtas-suits',
+    shortDescription: 'An everyday straight kurta in washed cotton, with pockets.',
+    description:
+      'The one you reach for on a working Tuesday. Washed cotton that has already done its shrinking, a straight cut that skims rather than clings, and pockets deep enough to be useful. The rose is muted and slightly dusty, so it sits well against most skin tones and does not fade harshly.',
+    hsnCode: '6204',
+    gstRatePercent: 12,
+    brand: 'Vennzya',
+    careInstructions: 'Machine wash cold on a gentle cycle. Tumble dry low. Warm iron.',
+    seoTitle: 'Rose Washed Cotton Straight Kurta',
+    seoDescription:
+      'Everyday straight-cut cotton kurta with pockets. Sizes XS-XXL, delivered across India.',
+    isFeatured: false,
+    optionNames: ['Size', 'Colour'],
+    images: [img('photo-1602173574767-37ac01994b2a'), img('photo-1571513722275-4b41940f54b8')],
+    variants: [
+      {
+        sku: 'VZ-KUR-ROS-XS',
+        price: 1299,
+        stock: 7,
+        options: [
+          ['Size', 'XS'],
+          ['Colour', 'Rose'],
+        ],
+      },
+      {
+        sku: 'VZ-KUR-ROS-S',
+        price: 1299,
+        stock: 15,
+        options: [
+          ['Size', 'S'],
+          ['Colour', 'Rose'],
+        ],
+      },
+      {
+        sku: 'VZ-KUR-ROS-M',
+        price: 1299,
+        stock: 18,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Rose'],
+        ],
+      },
+      {
+        sku: 'VZ-KUR-OLV-M',
+        price: 1299,
+        stock: 9,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Olive'],
+        ],
+      },
+      {
+        sku: 'VZ-KUR-OLV-L',
+        price: 1299,
+        stock: 4,
+        options: [
+          ['Size', 'L'],
+          ['Colour', 'Olive'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'sand-tiered-cotton-maxi',
+    name: 'Sand Tiered Cotton Maxi',
+    categorySlug: 'dresses',
+    shortDescription: 'Three tiers of soft cotton, cut for hot afternoons.',
+    description:
+      'A maxi built for heat. Three unequal tiers keep the volume from reading as a nightdress, and the cotton is loosely woven so air actually moves through it. Adjustable straps, a smocked back panel, and no zip to fight with. It travels well and creases in a way that looks deliberate.',
+    hsnCode: '6204',
+    gstRatePercent: 12,
+    brand: 'Vennzya',
+    careInstructions: 'Machine wash cold. Line dry in shade. Iron on medium if needed.',
+    seoTitle: 'Sand Tiered Cotton Maxi Dress',
+    seoDescription:
+      'Breathable tiered cotton maxi dress with a smocked back. Sizes XS-XXL, delivered across India.',
+    isFeatured: true,
+    optionNames: ['Size', 'Colour'],
+    images: [img('photo-1490481651871-ab68de25d43d'), img('photo-1445205170230-053b83016050')],
+    variants: [
+      {
+        sku: 'VZ-MAX-SND-XS',
+        price: 2199,
+        compareAtPrice: 2799,
+        stock: 5,
+        options: [
+          ['Size', 'XS'],
+          ['Colour', 'Sand'],
+        ],
+      },
+      {
+        sku: 'VZ-MAX-SND-S',
+        price: 2199,
+        compareAtPrice: 2799,
+        stock: 11,
+        options: [
+          ['Size', 'S'],
+          ['Colour', 'Sand'],
+        ],
+      },
+      {
+        sku: 'VZ-MAX-SND-M',
+        price: 2199,
+        compareAtPrice: 2799,
+        stock: 13,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Sand'],
+        ],
+      },
+      {
+        sku: 'VZ-MAX-SND-L',
+        price: 2199,
+        stock: 2,
+        options: [
+          ['Size', 'L'],
+          ['Colour', 'Sand'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'noir-wrap-midi-dress',
+    name: 'Noir Wrap Midi Dress',
+    categorySlug: 'dresses',
+    shortDescription: 'A true wrap dress in matte crepe, with an inner tie.',
+    description:
+      'An honest wrap: it ties, it holds, and there is an inner anchor so it stays where you put it. The crepe is matte and heavy enough to drape without pulling across the hip. Sleeves hit just below the elbow. It reads formal with heels and considerably less so with flats.',
+    hsnCode: '6104',
+    gstRatePercent: 5,
+    brand: 'Vennzya',
+    careInstructions: 'Dry clean recommended. Cool iron on reverse.',
+    seoTitle: 'Noir Crepe Wrap Midi Dress',
+    seoDescription:
+      'Matte crepe wrap midi dress with an inner tie. Sizes XS-XXL, delivered across India.',
+    isFeatured: false,
+    optionNames: ['Size', 'Colour'],
+    images: [img('photo-1539533018447-63fcce2678e3'), img('photo-1434389677669-e08b4cac3105')],
+    variants: [
+      {
+        sku: 'VZ-WRP-NOI-S',
+        price: 2599,
+        stock: 9,
+        options: [
+          ['Size', 'S'],
+          ['Colour', 'Noir'],
+        ],
+      },
+      {
+        sku: 'VZ-WRP-NOI-M',
+        price: 2599,
+        stock: 14,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Noir'],
+        ],
+      },
+      {
+        sku: 'VZ-WRP-NOI-L',
+        price: 2599,
+        stock: 7,
+        options: [
+          ['Size', 'L'],
+          ['Colour', 'Noir'],
+        ],
+      },
+      {
+        sku: 'VZ-WRP-ESP-M',
+        price: 2599,
+        stock: 6,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Espresso'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'espresso-organza-saree',
+    name: 'Espresso Organza Saree',
+    categorySlug: 'sarees',
+    shortDescription: 'Crisp organza with a fine zari border and a blouse piece.',
+    description:
+      'Organza that holds a pleat without needing starch. The zari border is narrow, a single line of gold along the pallu and selvedge, which keeps it wearable outside a wedding hall. It comes with an unstitched blouse piece in a matching shade. Six and a quarter metres.',
+    hsnCode: '6204',
+    gstRatePercent: 12,
+    brand: 'Vennzya',
+    careInstructions: 'Dry clean only. Store rolled rather than folded to avoid creasing the zari.',
+    seoTitle: 'Espresso Organza Saree with Zari Border',
+    seoDescription:
+      'Crisp organza saree with a fine zari border and blouse piece. Delivered across India.',
+    isFeatured: true,
+    optionNames: ['Colour'],
+    images: [img('photo-1445205170230-053b83016050'), img('photo-1620799140408-edc6dcb6d633')],
+    variants: [
+      {
+        sku: 'VZ-SAR-ESP-OS',
+        price: 4299,
+        compareAtPrice: 5499,
+        stock: 6,
+        options: [['Colour', 'Espresso']],
+      },
+      {
+        sku: 'VZ-SAR-NOI-OS',
+        price: 4299,
+        compareAtPrice: 5499,
+        stock: 4,
+        options: [['Colour', 'Noir']],
+      },
+      { sku: 'VZ-SAR-ROS-OS', price: 4299, stock: 3, options: [['Colour', 'Rose']] },
+    ],
+  },
+  {
+    slug: 'ivory-handloom-cotton-saree',
+    name: 'Ivory Handloom Cotton Saree',
+    categorySlug: 'sarees',
+    shortDescription: 'An everyday handloom in undyed cotton with a woven stripe.',
+    description:
+      'Woven on a pit loom, with the small irregularities that come with it. Undyed cotton in its natural ivory, broken by a fine woven stripe along the border. It softens with every wash and is genuinely comfortable in humidity: the sort of saree that gets worn on ordinary days rather than kept aside.',
+    hsnCode: '6204',
+    gstRatePercent: 12,
+    brand: 'Vennzya',
+    careInstructions: 'Hand wash separately for the first three washes. Line dry in shade.',
+    seoTitle: 'Ivory Handloom Cotton Saree',
+    seoDescription:
+      'Undyed handloom cotton saree with a woven stripe border. Delivered across India.',
+    isFeatured: false,
+    optionNames: ['Colour'],
+    images: [img('photo-1523381210434-271e8be1f52b'), img('photo-1608042314453-ae338d80c427')],
+    variants: [
+      { sku: 'VZ-SAR-HND-IVR', price: 2799, stock: 10, options: [['Colour', 'Ivory']] },
+      { sku: 'VZ-SAR-HND-SND', price: 2799, stock: 8, options: [['Colour', 'Sand']] },
+    ],
+  },
+  {
+    slug: 'oxidised-jhumka-earrings',
+    name: 'Oxidised Jhumka Earrings',
+    categorySlug: 'earrings',
+    shortDescription: 'Classic dome jhumkas in an oxidised silver finish.',
+    description:
+      'Dome jhumkas with a fine granulated edge and small bell drops that move without jangling. The oxidised finish is deliberately uneven, catching light in the recesses. Light enough at eleven grams a pair to wear through a full evening. The posts are nickel-free.',
+    hsnCode: '7117',
+    gstRatePercent: 3,
+    brand: 'Vennzya',
+    careInstructions:
+      'Keep away from perfume and water. Wipe with a dry cloth and store in the pouch provided.',
+    seoTitle: 'Oxidised Silver Jhumka Earrings',
+    seoDescription:
+      'Lightweight oxidised dome jhumkas with bell drops and nickel-free posts. Delivered across India.',
+    isFeatured: true,
+    optionNames: ['Metal'],
+    images: [img('photo-1611591437281-460bfbe1220a'), img('photo-1617038220319-276d3cfab638')],
+    variants: [
+      {
+        sku: 'VZ-EAR-OXI-OS',
+        price: 899,
+        compareAtPrice: 1199,
+        stock: 22,
+        options: [['Metal', 'Oxidised']],
+      },
+      { sku: 'VZ-EAR-SLV-JHK', price: 999, stock: 14, options: [['Metal', 'Silver']] },
+    ],
+  },
+  {
+    slug: 'pearl-stud-everyday-earrings',
+    name: 'Pearl Stud Everyday Earrings',
+    categorySlug: 'earrings',
+    shortDescription: 'Freshwater pearl studs on gold-finish posts.',
+    description:
+      'Seven-millimetre freshwater pearls, chosen for roundness rather than size, set on gold-finish posts with screw backs so they do not wander. Slight variation in lustre between pairs is expected and is rather the point: these are real pearls, not glass.',
+    hsnCode: '7117',
+    gstRatePercent: 3,
+    brand: 'Vennzya',
+    careInstructions: 'Put on after perfume, not before. Wipe with a soft dry cloth.',
+    seoTitle: 'Freshwater Pearl Stud Earrings',
+    seoDescription:
+      'Seven-millimetre freshwater pearl studs with screw backs. Delivered across India.',
+    isFeatured: false,
+    optionNames: ['Metal', 'Stone'],
+    images: [img('photo-1617038220319-276d3cfab638'), img('photo-1611085583191-a3b181a88401')],
+    variants: [
+      {
+        sku: 'VZ-EAR-PRL-GLD',
+        price: 1299,
+        stock: 19,
+        options: [
+          ['Metal', 'Gold'],
+          ['Stone', 'Pearl'],
+        ],
+      },
+      {
+        sku: 'VZ-EAR-PRL-RSG',
+        price: 1299,
+        stock: 11,
+        options: [
+          ['Metal', 'Rose Gold'],
+          ['Stone', 'Pearl'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'emerald-drop-pendant-necklace',
+    name: 'Emerald Drop Pendant Necklace',
+    categorySlug: 'necklaces',
+    shortDescription: 'A single green drop on a fine gold-finish chain.',
+    description:
+      'One stone, one chain, nothing else. The emerald-cut drop is a synthetic green quartz: clear, well cut, and considerably more even in colour than a natural stone at this price. The chain is forty centimetres with a five-centimetre extender, so it sits at the collarbone or just below.',
+    hsnCode: '7117',
+    gstRatePercent: 3,
+    brand: 'Vennzya',
+    careInstructions: 'Remove before swimming or bathing. Store flat in the pouch provided.',
+    seoTitle: 'Emerald Drop Pendant Necklace',
+    seoDescription:
+      'Emerald-cut green drop pendant on a fine gold-finish chain with extender. Delivered across India.',
+    isFeatured: false,
+    optionNames: ['Metal', 'Stone'],
+    images: [img('photo-1599643478518-a784e5dc4c8f'), img('photo-1611085583191-a3b181a88401')],
+    variants: [
+      {
+        sku: 'VZ-NCK-EMR-GLD',
+        price: 1799,
+        compareAtPrice: 2299,
+        stock: 9,
+        options: [
+          ['Metal', 'Gold'],
+          ['Stone', 'Emerald'],
+        ],
+      },
+      {
+        sku: 'VZ-NCK-EMR-SLV',
+        price: 1699,
+        stock: 5,
+        options: [
+          ['Metal', 'Silver'],
+          ['Stone', 'Emerald'],
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'oxidised-silver-bangle-stack',
+    name: 'Oxidised Silver Bangle Stack',
+    categorySlug: 'bangles',
+    shortDescription: 'A set of six thin bangles meant to be worn together.',
+    description:
+      'Six thin bangles, each slightly different in texture: two plain, two hammered, two with a fine twisted rope pattern. Worn together they make a sound closer to a soft rattle than a clatter. Sold as a set of six in a single size, so do check the sizing guide before ordering.',
+    hsnCode: '7117',
+    gstRatePercent: 3,
+    brand: 'Vennzya',
+    careInstructions: 'Wipe dry after wearing. The oxidised finish deepens with time.',
+    seoTitle: 'Oxidised Silver Bangle Stack, Set of Six',
+    seoDescription: 'Set of six thin oxidised bangles in mixed textures. Delivered across India.',
+    isFeatured: false,
+    optionNames: ['Metal'],
+    images: [img('photo-1606522754091-a3bbf9ad4cb3'), img('photo-1611591437281-460bfbe1220a')],
+    variants: [
+      { sku: 'VZ-BNG-OXI-ST', price: 1499, stock: 12, options: [['Metal', 'Oxidised']] },
+      { sku: 'VZ-BNG-SLV-ST', price: 1599, stock: 7, options: [['Metal', 'Silver']] },
+    ],
+  },
+  {
+    slug: 'ivory-canvas-market-tote',
+    name: 'Ivory Canvas Market Tote',
+    categorySlug: 'bags',
+    shortDescription: 'Heavy cotton canvas with leather-trimmed handles.',
+    description:
+      'Sixteen-ounce cotton canvas, stiff enough to stand up on its own when loaded. The handles are trimmed in vegetable-tanned leather and riveted rather than only stitched, because that is the joint that fails first. One inner slip pocket. It will mark and soften with use, which is the intended trajectory.',
+    hsnCode: '4202',
+    gstRatePercent: 12,
+    brand: 'Vennzya',
+    careInstructions: 'Spot clean the canvas. Condition the leather trim twice a year.',
+    seoTitle: 'Ivory Canvas Market Tote with Leather Handles',
+    seoDescription:
+      'Heavy cotton canvas tote with riveted leather handles and an inner pocket. Delivered across India.',
+    isFeatured: true,
+    optionNames: ['Colour'],
+    images: [img('photo-1584302179602-e4c3d3fd629d'), img('photo-1551232864-3f0890e580d9')],
+    variants: [
+      {
+        sku: 'VZ-TOT-IVR-OS',
+        price: 1899,
+        compareAtPrice: 2399,
+        stock: 16,
+        options: [['Colour', 'Ivory']],
+      },
+      { sku: 'VZ-TOT-OLV-OS', price: 1899, stock: 9, options: [['Colour', 'Olive']] },
+      { sku: 'VZ-TOT-NOI-OS', price: 1899, stock: 1, options: [['Colour', 'Noir']] },
+    ],
+  },
+  {
+    slug: 'olive-block-print-scarf',
+    name: 'Olive Block Print Scarf',
+    categorySlug: 'scarves',
+    shortDescription: 'Hand block printed cotton voile, light enough to knot.',
+    description:
+      'Hand block printed in Bagru using natural dyes, so no two are identical and the register shifts very slightly at the edges. Cotton voile, two metres by seventy centimetres, long enough to wrap twice or knot once. The olive comes from an indigo and myrobalan overdye and will mellow rather than fade.',
+    hsnCode: '6217',
+    gstRatePercent: 12,
+    brand: 'Vennzya',
+    careInstructions: 'Hand wash separately in cold water for the first two washes. Dry in shade.',
+    seoTitle: 'Olive Hand Block Print Cotton Scarf',
+    seoDescription:
+      'Naturally dyed hand block printed cotton voile scarf from Bagru. Delivered across India.',
+    isFeatured: false,
+    optionNames: ['Colour'],
+    images: [img('photo-1608042314453-ae338d80c427'), img('photo-1523381210434-271e8be1f52b')],
+    variants: [
+      { sku: 'VZ-SCF-BLK-OLV', price: 799, stock: 20, options: [['Colour', 'Olive']] },
+      { sku: 'VZ-SCF-BLK-ROS', price: 799, stock: 13, options: [['Colour', 'Rose']] },
+      { sku: 'VZ-SCF-SND-OS', price: 799, stock: 17, options: [['Colour', 'Sand']] },
+    ],
+  },
+  {
+    slug: 'noir-slim-leather-belt',
+    name: 'Noir Slim Leather Belt',
+    categorySlug: 'belts',
+    shortDescription: 'A twenty-millimetre belt in full-grain leather.',
+    description:
+      'Full-grain leather, twenty millimetres wide, with a brushed brass buckle that is stitched in rather than glued. Cut narrow so it works through the belt loops of a dress as readily as trousers. Five holes at two-and-a-half centimetre spacing. It creases along the fold and keeps that crease.',
+    hsnCode: '6217',
+    gstRatePercent: 12,
+    brand: 'Vennzya',
+    careInstructions: 'Wipe with a barely damp cloth. Condition once a year. Do not soak.',
+    seoTitle: 'Noir Slim Full-Grain Leather Belt',
+    seoDescription:
+      'Twenty-millimetre full-grain leather belt with a brushed brass buckle. Delivered across India.',
+    isFeatured: false,
+    optionNames: ['Colour'],
+    images: [img('photo-1441984904996-e0b6ba687e04'), img('photo-1479064555552-3ef4979f8908')],
+    variants: [
+      { sku: 'VZ-BLT-NOI-OS', price: 1299, stock: 14, options: [['Colour', 'Noir']] },
+      { sku: 'VZ-BLT-ESP-SLM', price: 1299, stock: 8, options: [['Colour', 'Espresso']] },
+    ],
+  },
 ]
 
 const COLLECTIONS: {
@@ -680,6 +1177,12 @@ const COLLECTIONS: {
       'pearl-drop-layered-necklace',
       'espresso-leather-tote',
       'ivory-modal-scarf',
+      'sand-tiered-cotton-maxi',
+      'rose-cotton-straight-kurta',
+      'ivory-canvas-market-tote',
+      'olive-block-print-scarf',
+      'pearl-stud-everyday-earrings',
+      'noir-wrap-midi-dress',
     ],
   },
   {
@@ -694,6 +1197,11 @@ const COLLECTIONS: {
       'pearl-drop-layered-necklace',
       'gold-filigree-bangle-set',
       'ivory-chikankari-kurta',
+      'noir-anarkali-kurta-set',
+      'espresso-organza-saree',
+      'oxidised-jhumka-earrings',
+      'emerald-drop-pendant-necklace',
+      'oxidised-silver-bangle-stack',
     ],
   },
 ]
