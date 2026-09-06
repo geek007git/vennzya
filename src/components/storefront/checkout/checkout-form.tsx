@@ -251,7 +251,12 @@ export function CheckoutForm({ razorpayEnabled }: { razorpayEnabled: boolean }) 
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
-            <Field label="PIN code" htmlFor="postalCode" required error={errors.postalCode?.message}>
+            <Field
+              label="PIN code"
+              htmlFor="postalCode"
+              required
+              error={errors.postalCode?.message}
+            >
               <Input
                 id="postalCode"
                 inputMode="numeric"
@@ -303,11 +308,19 @@ export function CheckoutForm({ razorpayEnabled }: { razorpayEnabled: boolean }) 
             className="space-y-3"
           >
             <label
+              htmlFor="payment-razorpay"
               className={`flex cursor-pointer items-start gap-3 rounded-[var(--radius-card)] border p-4 transition-colors ${
-                paymentMethod === 'RAZORPAY' ? 'border-espresso-800 bg-espresso-50' : 'border-border'
+                paymentMethod === 'RAZORPAY'
+                  ? 'border-espresso-800 bg-espresso-50'
+                  : 'border-border'
               } ${razorpayEnabled ? '' : 'cursor-not-allowed opacity-50'}`}
             >
-              <RadioGroupItem value="RAZORPAY" disabled={!razorpayEnabled} className="mt-1" />
+              <RadioGroupItem
+                id="payment-razorpay"
+                value="RAZORPAY"
+                disabled={!razorpayEnabled}
+                className="mt-1"
+              />
               <span className="flex-1">
                 <span className="flex items-center gap-2 text-sm font-medium">
                   Pay online
@@ -322,11 +335,12 @@ export function CheckoutForm({ razorpayEnabled }: { razorpayEnabled: boolean }) 
             </label>
 
             <label
+              htmlFor="payment-cod"
               className={`flex cursor-pointer items-start gap-3 rounded-[var(--radius-card)] border p-4 transition-colors ${
                 paymentMethod === 'COD' ? 'border-espresso-800 bg-espresso-50' : 'border-border'
               }`}
             >
-              <RadioGroupItem value="COD" className="mt-1" />
+              <RadioGroupItem id="payment-cod" value="COD" className="mt-1" />
               <span className="flex-1">
                 <span className="text-sm font-medium">Cash on delivery</span>
                 <span className="mt-1 block text-xs text-muted-foreground">
@@ -444,7 +458,10 @@ export function CheckoutForm({ razorpayEnabled }: { razorpayEnabled: boolean }) 
 
           <p className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
             <ShieldCheck className="size-3.5" aria-hidden />
-            Secure checkout · <Link href="/policies/returns" className="underline">Easy returns</Link>
+            Secure checkout ·{' '}
+            <Link href="/policies/returns" className="underline">
+              Easy returns
+            </Link>
           </p>
         </div>
       </aside>

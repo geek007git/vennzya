@@ -2,13 +2,8 @@ import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { logger } from '@/lib/logger'
 import { toNumber } from '@/lib/money'
-import {
-  protectedProcedure,
-  publicProcedure,
-  requirePermission,
-  router,
-} from '@/server/trpc/init'
-import { db } from '@/server/db'
+import type { db } from '@/server/db'
+import { protectedProcedure, publicProcedure, requirePermission, router } from '@/server/trpc/init'
 
 const orderDetailSelect = {
   id: true,
@@ -154,7 +149,26 @@ export const ordersRouter = router({
           .enum(['CREATED', 'CONFIRMED', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'REFUNDED'])
           .optional(),
         paymentStatus: z
-          .enum(['PENDING', 'PAID', 'FAILED', 'REFUNDED', 'PARTIALLY_REFUNDED', 'COD_PENDING', 'COD_COLLECTED'])
+          .enum([
+            'PENDING',
+            'PAID',
+            'FAILED',
+            'REFUNDED',
+            'PARTIALLY_REFUNDED',
+            'COD_PENDING',
+            'COD_COLLECTED',
+          ])
+          .optional(),
+        shippingStatus: z
+          .enum([
+            'NOT_SHIPPED',
+            'PACKED',
+            'SHIPPED',
+            'OUT_FOR_DELIVERY',
+            'DELIVERED',
+            'RETURN_INITIATED',
+            'RETURNED',
+          ])
           .optional(),
         limit: z.number().int().min(1).max(100).default(25),
         cursor: z.string().optional(),
@@ -165,6 +179,7 @@ export const ordersRouter = router({
         where: {
           ...(input.status ? { status: input.status } : {}),
           ...(input.paymentStatus ? { paymentStatus: input.paymentStatus } : {}),
+          ...(input.shippingStatus ? { shippingStatus: input.shippingStatus } : {}),
           ...(input.q
             ? {
                 OR: [
@@ -210,7 +225,11 @@ export const ordersRouter = router({
     .query(async ({ input, ctx }) => {
       const order = await ctx.db.order.findUnique({
         where: { id: input.orderId },
-        select: { ...orderDetailSelect, adminNote: true, user: { select: { name: true, email: true, phoneNumber: true } } },
+        select: {
+          ...orderDetailSelect,
+          adminNote: true,
+          user: { select: { name: true, email: true, phoneNumber: true } },
+        },
       })
 
       if (!order) throw new TRPCError({ code: 'NOT_FOUND', message: 'Order not found.' })

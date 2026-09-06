@@ -5,8 +5,8 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useState, useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/field'
+import { Input } from '@/components/ui/input'
 import {
   Select,
   SelectContent,
@@ -15,8 +15,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { buildCatalogHref } from '@/modules/catalog/search-params'
 import { cn } from '@/lib/utils'
+import { buildCatalogHref } from '@/modules/catalog/search-params'
 
 export interface FacetOption {
   id: string
@@ -73,7 +73,11 @@ export function SortSelect() {
   )
 }
 
-function FilterBody({ facets, priceBounds, activeOptions }: Omit<FilterProps, 'activeFilterCount'>) {
+function FilterBody({
+  facets,
+  priceBounds,
+  activeOptions,
+}: Omit<FilterProps, 'activeFilterCount'>) {
   const { apply, params } = useFilterNavigation()
   const [minPrice, setMinPrice] = useState(params.get('minPrice') ?? '')
   const [maxPrice, setMaxPrice] = useState(params.get('maxPrice') ?? '')
@@ -81,9 +85,7 @@ function FilterBody({ facets, priceBounds, activeOptions }: Omit<FilterProps, 'a
 
   function toggleOptionValue(optionName: string, value: string) {
     const current = activeOptions[optionName] ?? []
-    const next = current.includes(value)
-      ? current.filter((v) => v !== value)
-      : [...current, value]
+    const next = current.includes(value) ? current.filter((v) => v !== value) : [...current, value]
     apply({ [optionName]: next.length > 0 ? next : null })
   }
 
@@ -91,8 +93,12 @@ function FilterBody({ facets, priceBounds, activeOptions }: Omit<FilterProps, 'a
     <div className="space-y-7">
       <fieldset className="space-y-3">
         <legend className="text-sm font-semibold">Availability</legend>
-        <label className="flex cursor-pointer items-center gap-2.5 py-1 text-sm text-muted-foreground">
+        <label
+          htmlFor="filter-in-stock"
+          className="flex cursor-pointer items-center gap-2.5 py-1 text-sm text-muted-foreground"
+        >
           <Checkbox
+            id="filter-in-stock"
             checked={inStockOnly}
             onCheckedChange={(checked) => apply({ inStock: checked ? '1' : null })}
           />

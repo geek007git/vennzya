@@ -8,6 +8,7 @@ import {
   MessageSquare,
   Package,
   ScrollText,
+  ShieldCheck,
   ShoppingCart,
   Users,
   Warehouse,
@@ -34,11 +35,16 @@ const NAV: NavItem[] = [
   { href: '/admin/orders', label: 'Orders', icon: ShoppingCart, permission: 'orders.manage' },
   { href: '/admin/products', label: 'Products', icon: Package, permission: 'products.manage' },
   { href: '/admin/stock', label: 'Stock', icon: Warehouse, permission: 'products.manage' },
-  { href: '/admin/discounts', label: 'Discounts', icon: BadgePercent, permission: 'discounts.manage' },
+  {
+    href: '/admin/discounts',
+    label: 'Discounts',
+    icon: BadgePercent,
+    permission: 'discounts.manage',
+  },
   { href: '/admin/customers', label: 'Customers', icon: Users, permission: 'customers.view' },
   { href: '/admin/messages', label: 'Messages', icon: MessageSquare, permission: 'support.manage' },
   { href: '/admin/content', label: 'Content', icon: ScrollText, permission: 'content.manage' },
-  { href: '/admin/staff', label: 'Staff', icon: Users, permission: 'staff.manage' },
+  { href: '/admin/staff', label: 'Staff', icon: ShieldCheck, permission: 'staff.manage' },
 ]
 
 export function AdminShell({
@@ -67,7 +73,8 @@ export function AdminShell({
   const nav = (
     <nav className="flex flex-1 flex-col gap-0.5 p-3" aria-label="Admin">
       {visible.map((item) => {
-        const isActive = item.href === '/admin' ? pathname === '/admin' : pathname.startsWith(item.href)
+        const isActive =
+          item.href === '/admin' ? pathname === '/admin' : pathname.startsWith(item.href)
 
         return (
           <Link

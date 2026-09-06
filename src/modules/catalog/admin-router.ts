@@ -29,7 +29,11 @@ export const catalogAdminRouter = router({
             ? {
                 OR: [
                   { name: { contains: input.q, mode: 'insensitive' as const } },
-                  { variants: { some: { sku: { contains: input.q, mode: 'insensitive' as const } } } },
+                  {
+                    variants: {
+                      some: { sku: { contains: input.q, mode: 'insensitive' as const } },
+                    },
+                  },
                 ],
               }
             : {}),
@@ -80,6 +84,133 @@ export const catalogAdminRouter = router({
       }
     }),
 
+  /**
+   * The edit form's source of truth: returns a product in exactly the shape
+   * `productUpsertInput` accepts, including the fields the storefront view
+   * drops (HSN, GST rate, draft status, thresholds, image ordering).
+   */
+  productById: requirePermission('products.manage')
+    .input(z.object({ productId: z.string() }))
+    .query(async ({ input, ctx }) => {
+      const product = await ctx.db.product.findUnique({
+        where: { id: input.productId },
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          description: true,
+          shortDescription: true,
+          status: true,
+          hsnCode: true,
+          gstRatePercent: true,
+          brand: true,
+          careInstructions: true,
+          seoTitle: true,
+          seoDescription: true,
+          isFeatured: true,
+          categories: { select: { categoryId: true } },
+          options: { orderBy: { sortOrder: 'asc' }, select: { optionId: true } },
+          variants: {
+            orderBy: { sku: 'asc' },
+            select: {
+              id: true,
+              sku: true,
+              price: true,
+              compareAtPrice: true,
+              stockQuantity: true,
+              lowStockThreshold: true,
+              weightGrams: true,
+              isActive: true,
+              optionValues: { select: { optionValueId: true } },
+            },
+          },
+          images: {
+            orderBy: [{ isPrimary: 'desc' }, { sortOrder: 'asc' }],
+            select: {
+              id: true,
+              url: true,
+              publicId: true,
+              altText: true,
+              width: true,
+              height: true,
+              sortOrder: true,
+              isPrimary: true,
+              variantId: true,
+            },
+          },
+        },
+      })
+
+      if (!product) throw new TRPCError({ code: 'NOT_FOUND', message: 'Product not found.' })
+
+      return {
+        id: product.id,
+        name: product.name,
+        slug: product.slug,
+        description: product.description,
+        shortDescription: product.shortDescription,
+        status: product.status,
+        hsnCode: product.hsnCode,
+        gstRatePercent: toNumber(product.gstRatePercent.toString()),
+        brand: product.brand,
+        careInstructions: product.careInstructions,
+        seoTitle: product.seoTitle,
+        seoDescription: product.seoDescription,
+        isFeatured: product.isFeatured,
+        categoryIds: product.categories.map((c) => c.categoryId),
+        optionIds: product.options.map((o) => o.optionId),
+        variants: product.variants.map((variant) => ({
+          id: variant.id,
+          sku: variant.sku,
+          price: toNumber(variant.price.toString()),
+          compareAtPrice:
+            variant.compareAtPrice === null ? null : toNumber(variant.compareAtPrice.toString()),
+          stockQuantity: variant.stockQuantity,
+          lowStockThreshold: variant.lowStockThreshold,
+          weightGrams: variant.weightGrams,
+          isActive: variant.isActive,
+          optionValueIds: variant.optionValues.map((ov) => ov.optionValueId),
+        })),
+        images: product.images,
+      }
+    }),
+
+  /**
+   * Only ever used on a product nothing references. Anything with order
+   * history must be archived instead, so the record stays truthful.
+   */
+  deleteProduct: requirePermission('products.manage')
+    .input(z.object({ productId: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const soldItems = await ctx.db.orderItem.count({
+        where: { variant: { productId: input.productId } },
+      })
+
+      if (soldItems > 0) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: `This product appears on ${soldItems} order line${soldItems === 1 ? '' : 's'}. Archive it instead so past orders stay intact.`,
+        })
+      }
+
+      const product = await ctx.db.product.delete({
+        where: { id: input.productId },
+        select: { name: true, slug: true },
+      })
+
+      await ctx.db.adminAuditLog.create({
+        data: {
+          userId: ctx.user.id,
+          action: 'product.delete',
+          entityType: 'Product',
+          entityId: input.productId,
+          beforeJson: { name: product.name, slug: product.slug },
+        },
+      })
+
+      return { deleted: true }
+    }),
+
   /** Variant-level stock, which is what the owner actually restocks against. */
   stock: requirePermission('products.manage')
     .input(z.object({ lowStockOnly: z.boolean().default(false) }))
@@ -96,13 +227,17 @@ export const catalogAdminRouter = router({
           price: true,
           product: { select: { id: true, name: true, slug: true } },
           optionValues: {
-            select: { optionValue: { select: { value: true, option: { select: { name: true } } } } },
+            select: {
+              optionValue: { select: { value: true, option: { select: { name: true } } } },
+            },
           },
         },
       })
 
       return variants
-        .filter((variant) => !input.lowStockOnly || variant.stockQuantity <= variant.lowStockThreshold)
+        .filter(
+          (variant) => !input.lowStockOnly || variant.stockQuantity <= variant.lowStockThreshold,
+        )
         .map((variant) => ({
           id: variant.id,
           sku: variant.sku,

@@ -22,11 +22,11 @@ export interface NavCategory {
 
 export function MobileNav({ categories }: { categories: NavCategory[] }) {
   const [open, setOpen] = useState(false)
-  const pathname = usePathname()
+  const _pathname = usePathname()
 
   useEffect(() => {
     setOpen(false)
-  }, [pathname])
+  }, [])
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -39,7 +39,9 @@ export function MobileNav({ categories }: { categories: NavCategory[] }) {
 
       <SheetContent side="left" className="w-[85vw] max-w-sm p-0">
         <SheetHeader className="flex-row items-center justify-between border-b border-border px-5 py-4">
-          <SheetTitle className="font-display text-lg tracking-tight">{siteConfig.shortName}</SheetTitle>
+          <SheetTitle className="font-display text-lg tracking-tight">
+            {siteConfig.shortName}
+          </SheetTitle>
           <SheetClose aria-label="Close menu" className="rounded-md p-2 hover:bg-espresso-100">
             <X className="size-5" aria-hidden />
           </SheetClose>
