@@ -1,12 +1,11 @@
 import { CheckCircle2, Clock, Package, Truck } from 'lucide-react'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { OrderReceipt } from '@/components/storefront/checkout/order-receipt'
 import { WhatsAppIcon } from '@/components/ui/brand-icons'
 import { Button } from '@/components/ui/button'
 import { Badge, Container } from '@/components/ui/primitives'
-import { formatInrCompact } from '@/lib/format'
 import { formatPhone } from '@/lib/india'
 import { siteConfig, whatsappLink } from '@/lib/site-config'
 import { trpc } from '@/trpc/server'
@@ -43,7 +42,6 @@ export default async function OrderConfirmationPage({ params, searchParams }: Pa
   const shipping = order.addresses.find((address) => address.kind === 'SHIPPING')
   const isPaid = order.paymentStatus === 'PAID' || order.paymentStatus === 'COD_COLLECTED'
   const awaitingPayment = order.paymentStatus === 'PENDING'
-  const gstTotal = order.cgstAmount + order.sgstAmount + order.igstAmount
 
   return (
     <Container className="py-12 md:py-16">
@@ -78,68 +76,13 @@ export default async function OrderConfirmationPage({ params, searchParams }: Pa
           </p>
         </div>
 
-        <section className="mt-10 rounded-[var(--radius-card)] border border-border bg-card p-6">
-          <h2 className="text-sm font-semibold">Your items</h2>
-
-          <ul className="mt-4 divide-y divide-border">
-            {order.items.map((item) => (
-              <li key={item.id} className="flex gap-4 py-4">
-                <div className="relative size-16 shrink-0 overflow-hidden rounded-md bg-espresso-100">
-                  {item.imageUrlSnapshot && (
-                    <Image
-                      src={item.imageUrlSnapshot}
-                      alt=""
-                      fill
-                      sizes="64px"
-                      className="object-cover"
-                    />
-                  )}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <Link
-                    href={`/products/${item.productSlugSnapshot}`}
-                    className="text-sm font-medium hover:underline"
-                  >
-                    {item.productNameSnapshot}
-                  </Link>
-                  <p className="mt-0.5 text-xs text-muted-foreground">
-                    {Object.entries(item.variantAttributesSnapshot)
-                      .map(([key, value]) => `${key} ${value}`)
-                      .join(' · ')}
-                    {' · '}
-                    Qty {item.quantity}
-                  </p>
-                </div>
-                <p className="text-sm font-medium">{formatInrCompact(item.lineTotal)}</p>
-              </li>
-            ))}
-          </ul>
-
-          <dl className="mt-4 space-y-2 border-t border-border pt-4 text-sm">
-            <div className="flex justify-between">
-              <dt className="text-muted-foreground">Subtotal</dt>
-              <dd>{formatInrCompact(order.subtotal)}</dd>
-            </div>
-            {order.discountAmount > 0 && (
-              <div className="flex justify-between text-[color:var(--success)]">
-                <dt>Discount {order.couponCodeSnapshot && `(${order.couponCodeSnapshot})`}</dt>
-                <dd>−{formatInrCompact(order.discountAmount)}</dd>
-              </div>
-            )}
-            <div className="flex justify-between">
-              <dt className="text-muted-foreground">Shipping</dt>
-              <dd>{order.shippingFee === 0 ? 'Free' : formatInrCompact(order.shippingFee)}</dd>
-            </div>
-            <div className="flex justify-between border-t border-border pt-2 text-base font-semibold">
-              <dt>Total</dt>
-              <dd data-testid="order-total">{formatInrCompact(order.totalAmount)}</dd>
-            </div>
-            <p className="text-[11px] text-muted-foreground">
-              Includes GST {formatInrCompact(gstTotal)}
-              {order.igstAmount > 0 ? ' (IGST)' : ' (CGST + SGST)'}
-            </p>
-          </dl>
-        </section>
+        <OrderReceipt
+          className="mt-10"
+          order={{
+            ...order,
+            paymentStatusLabel: PAYMENT_LABEL[order.paymentStatus] ?? order.paymentStatus,
+          }}
+        />
 
         {shipping && (
           <section className="mt-6 grid gap-6 rounded-[var(--radius-card)] border border-border bg-card p-6 sm:grid-cols-2">

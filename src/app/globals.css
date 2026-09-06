@@ -35,6 +35,20 @@
   --shadow-card-hover: 0 2px 4px rgb(34 24 16 / 0.06), 0 16px 40px -16px rgb(34 24 16 / 0.18);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Till-receipt feed. Stepped, so the paper advances line by line like a
+     thermal printer rather than gliding. Duration mirrors FEED_MS in
+     `order-receipt.tsx`. */
+  --animate-receipt-feed: receipt-feed 1.6s steps(14, end) both;
+
+  @keyframes receipt-feed {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
 }
 
 /* Semantic aliases — component code references these, never raw hex. */
@@ -159,6 +173,50 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-muted-foreground);
+  }
+
+  /* Torn bottom edge of a till receipt: a strip of downward triangles masked
+     off the last few pixels of the paper. */
+  .receipt-paper {
+    --receipt-tooth: 6px;
+    -webkit-mask-image:
+      linear-gradient(#000 0 0), conic-gradient(from 135deg at 50% 0, #000 0 90deg, #0000 0);
+    -webkit-mask-size:
+      100% calc(100% - var(--receipt-tooth)),
+      12px var(--receipt-tooth);
+    -webkit-mask-position:
+      top left,
+      bottom left;
+    -webkit-mask-repeat: no-repeat, repeat-x;
+    mask-image:
+      linear-gradient(#000 0 0), conic-gradient(from 135deg at 50% 0, #000 0 90deg, #0000 0);
+    mask-size:
+      100% calc(100% - var(--receipt-tooth)),
+      12px var(--receipt-tooth);
+    mask-position:
+      top left,
+      bottom left;
+    mask-repeat: no-repeat, repeat-x;
+  }
+}
+
+/* Printing the confirmation page yields the receipt alone, at paper width. */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .receipt,
+  .receipt * {
+    visibility: visible;
+  }
+
+  .receipt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: none;
+    width: 100%;
   }
 }
 
