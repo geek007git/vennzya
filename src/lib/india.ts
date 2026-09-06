@@ -53,9 +53,7 @@ export function isValidIndianMobile(input: string): boolean {
   const digits = input.replace(/\D/g, '')
 
   // Strip only the prefixes Indians actually write: 0, 91, 091.
-  const national = digits
-    .replace(/^0?91/, '')
-    .replace(/^0/, '')
+  const national = digits.replace(/^0?91/, '').replace(/^0/, '')
 
   if (national.length !== 10) return false
 

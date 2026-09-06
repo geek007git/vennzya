@@ -2,8 +2,8 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { AdminShell } from '@/components/admin/admin-shell'
 import { auth } from '@/lib/auth'
-import { db } from '@/server/db'
 import { PERMISSION_KEYS, type PermissionKey } from '@/modules/staff/permissions'
+import { db } from '@/server/db'
 
 // Admin data is per-user and never cacheable.
 export const dynamic = 'force-dynamic'

@@ -93,11 +93,7 @@ export default async function HomePage() {
 
       <section className="section-y bg-cream-50">
         <Container>
-          <SectionHeading
-            eyebrow="Why Vennzya"
-            title="Shopping you can trust"
-            align="center"
-          />
+          <SectionHeading eyebrow="Why Vennzya" title="Shopping you can trust" align="center" />
           <TrustStrip />
         </Container>
       </section>
@@ -129,7 +125,8 @@ export default async function HomePage() {
               Not sure about a size or a stone? Just ask.
             </h2>
             <p className="max-w-md text-sm text-cream-100/75">
-              Message us on WhatsApp and a real person will help you choose — {siteConfig.supportHours}.
+              Message us on WhatsApp and a real person will help you choose —{' '}
+              {siteConfig.supportHours}.
             </p>
             <Button asChild variant="whatsapp" size="lg">
               <a

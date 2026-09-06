@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { WhatsAppIcon } from '@/components/ui/brand-icons'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import { WhatsAppIcon } from '@/components/ui/brand-icons'
 import { Button } from '@/components/ui/button'
 import { Container, SectionHeading } from '@/components/ui/primitives'
 import { siteConfig, whatsappLink } from '@/lib/site-config'
@@ -74,7 +74,8 @@ export default async function FaqPage() {
               Still have a question?
             </h2>
             <p className="mx-auto mt-2 max-w-md text-sm text-cream-100/75">
-              Message us on WhatsApp and a real person will get back to you — {siteConfig.supportHours}.
+              Message us on WhatsApp and a real person will get back to you —{' '}
+              {siteConfig.supportHours}.
             </p>
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
               <Button asChild variant="whatsapp">
@@ -87,7 +88,11 @@ export default async function FaqPage() {
                   Chat on WhatsApp
                 </a>
               </Button>
-              <Button asChild variant="outline" className="border-cream-100/30 text-cream-50 hover:bg-cream-100/10">
+              <Button
+                asChild
+                variant="outline"
+                className="border-cream-100/30 text-cream-50 hover:bg-cream-100/10"
+              >
                 <Link href="/contact">Send a message</Link>
               </Button>
             </div>

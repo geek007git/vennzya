@@ -57,14 +57,23 @@ export function CartView() {
               className="relative size-24 shrink-0 overflow-hidden rounded-md bg-espresso-100 sm:size-28"
             >
               {line.imageUrl && (
-                <Image src={line.imageUrl} alt={line.name} fill sizes="112px" className="object-cover" />
+                <Image
+                  src={line.imageUrl}
+                  alt={line.name}
+                  fill
+                  sizes="112px"
+                  className="object-cover"
+                />
               )}
             </Link>
 
             <div className="flex min-w-0 flex-1 flex-col gap-2">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <Link href={`/products/${line.slug}`} className="text-sm font-medium hover:underline">
+                  <Link
+                    href={`/products/${line.slug}`}
+                    className="text-sm font-medium hover:underline"
+                  >
                     {line.name}
                   </Link>
                   {line.variantLabel && (

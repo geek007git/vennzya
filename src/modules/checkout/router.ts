@@ -3,8 +3,8 @@ import { z } from 'zod'
 import { logger } from '@/lib/logger'
 import { verifyPaymentSignature } from '@/modules/payments/razorpay'
 import { confirmPayment } from '@/modules/payments/service'
-import { publicProcedure, router } from '@/server/trpc/init'
 import { rateLimiters } from '@/server/rate-limit'
+import { publicProcedure, router } from '@/server/trpc/init'
 import { placeOrderInput, quoteInput, verifyPaymentInput } from './schema'
 import { checkoutService } from './service'
 
@@ -62,7 +62,8 @@ export const checkoutRouter = router({
       logger.error({ razorpayOrderId: input.razorpayOrderId }, 'payment verify: bad signature')
       throw new TRPCError({
         code: 'BAD_REQUEST',
-        message: 'We could not verify that payment. If money was deducted, contact us and we will resolve it.',
+        message:
+          'We could not verify that payment. If money was deducted, contact us and we will resolve it.',
       })
     }
 

@@ -36,9 +36,7 @@ export default async function TestimonialsPage() {
       )}
 
       <div className="mt-12 text-center">
-        <p className="text-sm text-muted-foreground">
-          Found something you like the sound of?
-        </p>
+        <p className="text-sm text-muted-foreground">Found something you like the sound of?</p>
         <Button asChild size="lg" className="mt-4">
           <Link href="/shop">Shop the collection</Link>
         </Button>

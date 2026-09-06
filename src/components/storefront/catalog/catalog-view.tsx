@@ -1,14 +1,9 @@
 import Link from 'next/link'
 import { ProductGrid } from '@/components/storefront/product-card'
 import { Button } from '@/components/ui/button'
-import type { ProductCardView } from '@/modules/catalog/service'
 import { buildCatalogHref } from '@/modules/catalog/search-params'
-import {
-  FilterDrawer,
-  FilterSidebar,
-  SortSelect,
-  type FacetOption,
-} from './filter-controls'
+import type { ProductCardView } from '@/modules/catalog/service'
+import { type FacetOption, FilterDrawer, FilterSidebar, SortSelect } from './filter-controls'
 
 interface CatalogViewProps {
   basePath: string

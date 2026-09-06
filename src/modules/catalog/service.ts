@@ -81,7 +81,13 @@ export interface ProductDetailView {
   priceTo: number | null
   isOutOfStock: boolean
   categories: { id: string; name: string; slug: string }[]
-  images: { id: string; url: string; altText: string | null; blurDataUrl: string | null; variantId: string | null }[]
+  images: {
+    id: string
+    url: string
+    altText: string | null
+    blurDataUrl: string | null
+    variantId: string | null
+  }[]
   options: {
     id: string
     name: string
@@ -174,7 +180,10 @@ export const catalogService = {
    * after every write that can change price or stock — including order
    * placement — so the catalogue never advertises a stale price.
    */
-  async syncProductAggregates(productId: string, client: Prisma.TransactionClient | typeof db = db) {
+  async syncProductAggregates(
+    productId: string,
+    client: Prisma.TransactionClient | typeof db = db,
+  ) {
     const variants = await client.productVariant.findMany({
       where: { productId, isActive: true },
       select: { price: true, stockQuantity: true },

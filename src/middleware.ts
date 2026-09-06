@@ -1,5 +1,5 @@
 import { getSessionCookie } from 'better-auth/cookies'
-import { NextResponse, type NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 /**
  * Edge middleware can't reach Prisma, so this only proves a session cookie is

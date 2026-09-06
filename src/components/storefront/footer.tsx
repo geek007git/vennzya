@@ -112,7 +112,10 @@ export function Footer() {
           </p>
           <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <span>Secure payments via UPI, cards & netbanking</span>
-            <a href={whatsappLink('Hi! I need help with an order.')} className="hover:text-cream-50">
+            <a
+              href={whatsappLink('Hi! I need help with an order.')}
+              className="hover:text-cream-50"
+            >
               Support: {siteConfig.supportHours}
             </a>
           </p>

@@ -9,7 +9,16 @@ import { PRODUCT_SORTS, type ProductListInput, type ProductSort } from './schema
 export type RawSearchParams = Record<string, string | string[] | undefined>
 
 /** Query keys that are not option facets. */
-const RESERVED = new Set(['q', 'sort', 'page', 'minPrice', 'maxPrice', 'inStock', 'category', 'collection'])
+const RESERVED = new Set([
+  'q',
+  'sort',
+  'page',
+  'minPrice',
+  'maxPrice',
+  'inStock',
+  'category',
+  'collection',
+])
 
 function first(value: string | string[] | undefined): string | undefined {
   return Array.isArray(value) ? value[0] : value

@@ -10,9 +10,13 @@ import {
 import { catalogService, toProductCard } from './service'
 
 export const catalogRouter = router({
-  list: publicProcedure.input(productListInput).query(({ input }) => catalogService.listProducts(input)),
+  list: publicProcedure
+    .input(productListInput)
+    .query(({ input }) => catalogService.listProducts(input)),
 
-  count: publicProcedure.input(productListInput).query(({ input }) => catalogRepository.countProducts(input)),
+  count: publicProcedure
+    .input(productListInput)
+    .query(({ input }) => catalogRepository.countProducts(input)),
 
   bySlug: publicProcedure
     .input(productBySlugInput)

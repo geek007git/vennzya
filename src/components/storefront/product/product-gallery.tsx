@@ -59,7 +59,9 @@ export function ProductGallery({
               onClick={() => setActiveIndex(index)}
               className={cn(
                 'relative size-16 shrink-0 overflow-hidden rounded-md border transition-colors md:size-20',
-                index === displayIndex ? 'border-espresso-800' : 'border-border hover:border-espresso-400',
+                index === displayIndex
+                  ? 'border-espresso-800'
+                  : 'border-border hover:border-espresso-400',
               )}
             >
               <Image

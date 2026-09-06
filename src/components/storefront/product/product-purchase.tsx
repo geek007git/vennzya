@@ -201,7 +201,7 @@ export function ProductPurchase({ product }: { product: ProductDetailView }) {
           </fieldset>
         ))}
 
-        {variant && variant.isLowStock && (
+        {variant?.isLowStock && (
           <p className="text-xs font-medium text-destructive">
             Only {variant.stockQuantity} left in this option
           </p>

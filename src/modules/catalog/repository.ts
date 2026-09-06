@@ -73,7 +73,10 @@ export const productDetailSelect = {
           id: true,
           name: true,
           isSwatch: true,
-          values: { orderBy: { sortOrder: 'asc' }, select: { id: true, value: true, swatchHex: true } },
+          values: {
+            orderBy: { sortOrder: 'asc' },
+            select: { id: true, value: true, swatchHex: true },
+          },
         },
       },
     },

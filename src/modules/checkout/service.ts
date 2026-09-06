@@ -4,7 +4,7 @@ import type { Prisma } from '@/generated/prisma/client'
 import { env } from '@/lib/env'
 import { normalizePhone } from '@/lib/india'
 import { logger } from '@/lib/logger'
-import { money, round2, sum, toNumber, toPaise, ZERO, type Money } from '@/lib/money'
+import { type Money, money, round2, sum, toNumber, toPaise, ZERO } from '@/lib/money'
 import { siteConfig } from '@/lib/site-config'
 import { catalogService } from '@/modules/catalog/service'
 import { couponRulesFrom, evaluateCoupon } from '@/modules/discounts/coupon-engine'
@@ -100,12 +100,24 @@ async function resolveCoupon(
   code: string | undefined,
   orderSubtotal: Money,
   userId: string | null,
-): Promise<{ couponId: string | null; code: string | null; discount: Money; message: string | null; error: string | null }> {
+): Promise<{
+  couponId: string | null
+  code: string | null
+  discount: Money
+  message: string | null
+  error: string | null
+}> {
   if (!code) return { couponId: null, code: null, discount: ZERO(), message: null, error: null }
 
   const coupon = await db.coupon.findUnique({ where: { code: code.toUpperCase() } })
   if (!coupon) {
-    return { couponId: null, code: null, discount: ZERO(), message: null, error: 'That coupon code isn’t valid.' }
+    return {
+      couponId: null,
+      code: null,
+      discount: ZERO(),
+      message: null,
+      error: 'That coupon code isn’t valid.',
+    }
   }
 
   const customerRedemptions = userId
@@ -135,7 +147,11 @@ export const checkoutService = {
    */
   async quote(
     items: { variantId: string; quantity: number }[],
-    options: { couponCode?: string | undefined; state?: string | undefined; userId?: string | null },
+    options: {
+      couponCode?: string | undefined
+      state?: string | undefined
+      userId?: string | null
+    },
   ): Promise<QuoteView> {
     const variants = await loadVariants(items.map((item) => item.variantId))
     const adjustments: string[] = []
@@ -143,7 +159,7 @@ export const checkoutService = {
     const usable = items.flatMap((item) => {
       const variant = variants.get(item.variantId)
 
-      if (!variant || !variant.isActive || variant.product.status !== 'ACTIVE') {
+      if (!variant?.isActive || variant.product.status !== 'ACTIVE') {
         adjustments.push('An item in your bag is no longer available and was removed.')
         return []
       }
@@ -180,7 +196,11 @@ export const checkoutService = {
     }
 
     const subtotal = round2(
-      sum(usable.map(({ variant, quantity }) => round2(money(variant.price.toString()).times(quantity)))),
+      sum(
+        usable.map(({ variant, quantity }) =>
+          round2(money(variant.price.toString()).times(quantity)),
+        ),
+      ),
     )
 
     const coupon = await resolveCoupon(options.couponCode, subtotal, options.userId ?? null)
@@ -238,7 +258,7 @@ export const checkoutService = {
     const lines = input.items.map((item) => {
       const variant = variants.get(item.variantId)
 
-      if (!variant || !variant.isActive || variant.product.status !== 'ACTIVE') {
+      if (!variant?.isActive || variant.product.status !== 'ACTIVE') {
         throw new TRPCError({
           code: 'CONFLICT',
           message: 'An item in your bag is no longer available. Please review your bag.',
@@ -257,7 +277,11 @@ export const checkoutService = {
 
     const phone = normalizePhone(input.shippingAddress.phone)
     const subtotal = round2(
-      sum(lines.map(({ variant, quantity }) => round2(money(variant.price.toString()).times(quantity)))),
+      sum(
+        lines.map(({ variant, quantity }) =>
+          round2(money(variant.price.toString()).times(quantity)),
+        ),
+      ),
     )
 
     const userId = sessionUserId ?? (await resolveGuestUserId(phone, input))
@@ -333,7 +357,10 @@ export const checkoutService = {
                 skuSnapshot: variant.sku,
                 imageUrlSnapshot: variant.product.images[0]?.url ?? null,
                 variantAttributesSnapshot: Object.fromEntries(
-                  variant.optionValues.map((ov) => [ov.optionValue.option.name, ov.optionValue.value]),
+                  variant.optionValues.map((ov) => [
+                    ov.optionValue.option.name,
+                    ov.optionValue.value,
+                  ]),
                 ),
                 hsnCodeSnapshot: variant.product.hsnCode,
                 gstRateSnapshot: variant.product.gstRatePercent,
@@ -351,7 +378,9 @@ export const checkoutService = {
               toOrderAddress('SHIPPING', input.shippingAddress),
               toOrderAddress(
                 'BILLING',
-                input.billingSameAsShipping ? input.shippingAddress : (input.billingAddress ?? input.shippingAddress),
+                input.billingSameAsShipping
+                  ? input.shippingAddress
+                  : (input.billingAddress ?? input.shippingAddress),
               ),
             ],
           },

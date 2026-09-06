@@ -67,7 +67,10 @@ export const productUpsertInput = z.object({
   description: z.string().trim().min(10).max(8000),
   shortDescription: z.string().trim().max(300).nullable().optional(),
   status: z.enum(['DRAFT', 'ACTIVE', 'ARCHIVED']).default('DRAFT'),
-  hsnCode: z.string().trim().regex(/^\d{4,8}$/, 'HSN code is 4-8 digits'),
+  hsnCode: z
+    .string()
+    .trim()
+    .regex(/^\d{4,8}$/, 'HSN code is 4-8 digits'),
   gstRatePercent: z.number().min(0).max(28),
   brand: z.string().trim().max(80).nullable().optional(),
   careInstructions: z.string().trim().max(2000).nullable().optional(),

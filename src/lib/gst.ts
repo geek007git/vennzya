@@ -1,4 +1,4 @@
-import { money, round2, type Money } from '@/lib/money'
+import { type Money, money, round2 } from '@/lib/money'
 
 /**
  * Catalogue prices are GST-inclusive (standard Indian retail practice: the

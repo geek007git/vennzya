@@ -40,7 +40,11 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
   },
-  twitter: { card: 'summary_large_image', title: siteConfig.name, description: siteConfig.description },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
   robots: { index: true, follow: true },
 }
 

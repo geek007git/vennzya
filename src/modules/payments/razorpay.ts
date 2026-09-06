@@ -86,9 +86,7 @@ export function verifyWebhookSignature(rawBody: string, signature: string): bool
     return false
   }
 
-  const expected = createHmac('sha256', env.RAZORPAY_WEBHOOK_SECRET)
-    .update(rawBody)
-    .digest('hex')
+  const expected = createHmac('sha256', env.RAZORPAY_WEBHOOK_SECRET).update(rawBody).digest('hex')
 
   return safeEquals(expected, signature)
 }

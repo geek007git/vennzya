@@ -3,10 +3,7 @@ import { INDIAN_STATES, isValidIndianMobile, PINCODE_REGEX } from '@/lib/india'
 
 export const addressInput = z.object({
   fullName: z.string().trim().min(2, 'Please enter the full name').max(80),
-  phone: z
-    .string()
-    .trim()
-    .refine(isValidIndianMobile, 'Enter a valid 10-digit mobile number'),
+  phone: z.string().trim().refine(isValidIndianMobile, 'Enter a valid 10-digit mobile number'),
   line1: z.string().trim().min(4, 'Please enter the address').max(160),
   line2: z.string().trim().max(160).optional(),
   landmark: z.string().trim().max(120).optional(),

@@ -1,4 +1,4 @@
-import { AlertTriangle, IndianRupee, MessageSquare, Package, Truck } from 'lucide-react'
+import { AlertTriangle, IndianRupee, MessageSquare, type Package, Truck } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/primitives'
@@ -144,8 +144,12 @@ export default async function AdminDashboardPage() {
                         {order.orderNumber}
                       </Link>
                     </td>
-                    <td className="px-4 py-3 text-muted-foreground">{order.user?.name ?? 'Guest'}</td>
-                    <td className="px-4 py-3 text-muted-foreground">{formatDate(order.placedAt)}</td>
+                    <td className="px-4 py-3 text-muted-foreground">
+                      {order.user?.name ?? 'Guest'}
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">
+                      {formatDate(order.placedAt)}
+                    </td>
                     <td className="px-4 py-3">
                       <Badge
                         variant={

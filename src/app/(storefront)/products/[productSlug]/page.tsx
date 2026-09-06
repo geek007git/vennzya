@@ -169,7 +169,10 @@ export default async function ProductPage({ params }: PageProps) {
                   depending on your pin code. Free shipping on orders above ₹
                   {siteConfig.freeShippingThreshold}.
                 </p>
-                <Link href="/policies/shipping" className="mt-2 inline-block underline underline-offset-4">
+                <Link
+                  href="/policies/shipping"
+                  className="mt-2 inline-block underline underline-offset-4"
+                >
                   Read the full shipping policy
                 </Link>
               </AccordionContent>
@@ -182,7 +185,10 @@ export default async function ProductPage({ params }: PageProps) {
                   delivery, unworn and with tags intact. Refunds are issued to the original payment
                   method once the return is received.
                 </p>
-                <Link href="/policies/returns" className="mt-2 inline-block underline underline-offset-4">
+                <Link
+                  href="/policies/returns"
+                  className="mt-2 inline-block underline underline-offset-4"
+                >
                   Read the full returns policy
                 </Link>
               </AccordionContent>

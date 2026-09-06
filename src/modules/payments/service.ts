@@ -1,7 +1,7 @@
 import type { Prisma } from '@/generated/prisma/client'
 import { logger } from '@/lib/logger'
-import { db } from '@/server/db'
 import { catalogService } from '@/modules/catalog/service'
+import { db } from '@/server/db'
 
 /**
  * Two paths report a payment: the browser callback (fast, but the shopper can
@@ -28,7 +28,10 @@ export async function confirmPayment(params: {
   })
 
   if (!payment) {
-    logger.warn({ razorpayOrderId: params.razorpayOrderId }, 'payment confirm: unknown razorpay order')
+    logger.warn(
+      { razorpayOrderId: params.razorpayOrderId },
+      'payment confirm: unknown razorpay order',
+    )
     return { outcome: 'not-found', orderId: null, orderNumber: null }
   }
 

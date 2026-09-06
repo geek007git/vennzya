@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { publicProcedure, requirePermission, router } from '@/server/trpc/init'
 import { db } from '@/server/db'
+import { publicProcedure, requirePermission, router } from '@/server/trpc/init'
 
 const contentPageUpdateInput = z.object({
   pageKey: z.enum(['privacy', 'terms', 'shipping', 'returns', 'about']),
@@ -12,7 +12,12 @@ const contentPageUpdateInput = z.object({
 
 export const contentRouter = router({
   testimonials: publicProcedure
-    .input(z.object({ featuredOnly: z.boolean().default(false), limit: z.number().int().min(1).max(24).default(12) }))
+    .input(
+      z.object({
+        featuredOnly: z.boolean().default(false),
+        limit: z.number().int().min(1).max(24).default(12),
+      }),
+    )
     .query(({ input }) =>
       db.testimonial.findMany({
         where: { isApproved: true, ...(input.featuredOnly ? { isFeatured: true } : {}) },
@@ -37,24 +42,31 @@ export const contentRouter = router({
     }),
   ),
 
-  page: publicProcedure
-    .input(z.object({ pageKey: z.string() }))
-    .query(({ input }) =>
-      db.contentPage.findUnique({
-        where: { pageKey: input.pageKey },
-        select: {
-          pageKey: true,
-          title: true,
-          bodyMarkdown: true,
-          seoTitle: true,
-          seoDescription: true,
-          updatedAt: true,
-        },
-      }),
-    ),
+  page: publicProcedure.input(z.object({ pageKey: z.string() })).query(({ input }) =>
+    db.contentPage.findUnique({
+      where: { pageKey: input.pageKey },
+      select: {
+        pageKey: true,
+        title: true,
+        bodyMarkdown: true,
+        seoTitle: true,
+        seoDescription: true,
+        updatedAt: true,
+      },
+    }),
+  ),
 
   banners: publicProcedure
-    .input(z.object({ placement: z.enum(['ANNOUNCEMENT_BAR', 'HOMEPAGE_HERO', 'HOMEPAGE_SECONDARY', 'CATEGORY_TOP']) }))
+    .input(
+      z.object({
+        placement: z.enum([
+          'ANNOUNCEMENT_BAR',
+          'HOMEPAGE_HERO',
+          'HOMEPAGE_SECONDARY',
+          'CATEGORY_TOP',
+        ]),
+      }),
+    )
     .query(({ input }) => {
       const now = new Date()
       return db.promoBanner.findMany({

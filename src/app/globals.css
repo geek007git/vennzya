@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 /*
   Vennzya brand tokens.
@@ -166,9 +166,12 @@
   *,
   *::before,
   *::after {
+    /* biome-ignore-start lint/complexity/noImportantStyles: a reduced-motion reset has to
+       beat every component-level animation, so !important is the point of the rule. */
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+    /* biome-ignore-end lint/complexity/noImportantStyles: end of the reduced-motion reset. */
   }
 }

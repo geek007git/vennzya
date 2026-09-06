@@ -1,5 +1,5 @@
-import { money, round2, ZERO, type Money } from '@/lib/money'
 import type { CouponType } from '@/generated/prisma/enums'
+import { type Money, money, round2, ZERO } from '@/lib/money'
 
 /**
  * Coupon rules, kept pure so every branch is unit testable. The caller supplies
@@ -54,7 +54,9 @@ export function evaluateCoupon(
   }
 
   if (coupon.minOrderValue && context.orderSubtotal.lessThan(coupon.minOrderValue)) {
-    return reject(`Add ₹${coupon.minOrderValue.minus(context.orderSubtotal).toFixed(0)} more to use this coupon.`)
+    return reject(
+      `Add ₹${coupon.minOrderValue.minus(context.orderSubtotal).toFixed(0)} more to use this coupon.`,
+    )
   }
 
   let discount =
@@ -97,8 +99,7 @@ export function couponRulesFrom(row: {
     type: row.type,
     value: money(String(row.value)),
     minOrderValue: row.minOrderValue === null ? null : money(String(row.minOrderValue)),
-    maxDiscountAmount:
-      row.maxDiscountAmount === null ? null : money(String(row.maxDiscountAmount)),
+    maxDiscountAmount: row.maxDiscountAmount === null ? null : money(String(row.maxDiscountAmount)),
     startsAt: row.startsAt,
     expiresAt: row.expiresAt,
     usageLimitTotal: row.usageLimitTotal,

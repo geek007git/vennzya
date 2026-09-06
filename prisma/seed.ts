@@ -18,7 +18,14 @@ const OPTIONS: { name: string; isSwatch: boolean; values: { value: string; hex?:
   {
     name: 'Size',
     isSwatch: false,
-    values: [{ value: 'XS' }, { value: 'S' }, { value: 'M' }, { value: 'L' }, { value: 'XL' }, { value: 'XXL' }],
+    values: [
+      { value: 'XS' },
+      { value: 'S' },
+      { value: 'M' },
+      { value: 'L' },
+      { value: 'XL' },
+      { value: 'XXL' },
+    ],
   },
   {
     name: 'Colour',
@@ -68,7 +75,8 @@ const CATEGORIES: CategorySeed[] = [
       {
         slug: 'kurtas-suits',
         name: 'Kurtas & Suits',
-        description: 'Hand-finished kurtas and coordinated suit sets for work, festivals and everything between.',
+        description:
+          'Hand-finished kurtas and coordinated suit sets for work, festivals and everything between.',
       },
       {
         slug: 'dresses',
@@ -93,8 +101,16 @@ const CATEGORIES: CategorySeed[] = [
     imageUrl: img('photo-1602173574767-37ac01994b2a'),
     children: [
       { slug: 'earrings', name: 'Earrings', description: 'Studs, jhumkas and statement drops.' },
-      { slug: 'necklaces', name: 'Necklaces', description: 'Layered chains, chokers and temple-inspired sets.' },
-      { slug: 'bangles', name: 'Bangles', description: 'Stackable bangles and cuffs in gold and rose gold finishes.' },
+      {
+        slug: 'necklaces',
+        name: 'Necklaces',
+        description: 'Layered chains, chokers and temple-inspired sets.',
+      },
+      {
+        slug: 'bangles',
+        name: 'Bangles',
+        description: 'Stackable bangles and cuffs in gold and rose gold finishes.',
+      },
     ],
   },
   {
@@ -107,9 +123,21 @@ const CATEGORIES: CategorySeed[] = [
       'Totes, sling bags, scarves and belts in a warm neutral palette. Premium fashion accessories delivered across India.',
     imageUrl: img('photo-1479064555552-3ef4979f8908'),
     children: [
-      { slug: 'bags', name: 'Bags', description: 'Totes, slings and pouches built for daily carry.' },
-      { slug: 'scarves', name: 'Scarves', description: 'Lightweight modal and cotton scarves in seasonless shades.' },
-      { slug: 'belts', name: 'Belts', description: 'Woven and smooth-finish belts that hold a silhouette.' },
+      {
+        slug: 'bags',
+        name: 'Bags',
+        description: 'Totes, slings and pouches built for daily carry.',
+      },
+      {
+        slug: 'scarves',
+        name: 'Scarves',
+        description: 'Lightweight modal and cotton scarves in seasonless shades.',
+      },
+      {
+        slug: 'belts',
+        name: 'Belts',
+        description: 'Woven and smooth-finish belts that hold a silhouette.',
+      },
     ],
   },
 ]
@@ -160,10 +188,45 @@ const PRODUCTS: ProductSeed[] = [
     optionNames: ['Size', 'Colour'],
     images: [img('photo-1571513722275-4b41940f54b8'), img('photo-1509319117193-57bab727e09d')],
     variants: [
-      { sku: 'VZ-KUR-IVR-S', price: 1899, compareAtPrice: 2399, stock: 14, options: [['Size', 'S'], ['Colour', 'Ivory']] },
-      { sku: 'VZ-KUR-IVR-M', price: 1899, compareAtPrice: 2399, stock: 2, options: [['Size', 'M'], ['Colour', 'Ivory']] },
-      { sku: 'VZ-KUR-IVR-L', price: 1899, compareAtPrice: 2399, stock: 9, options: [['Size', 'L'], ['Colour', 'Ivory']] },
-      { sku: 'VZ-KUR-SND-M', price: 1899, stock: 11, options: [['Size', 'M'], ['Colour', 'Sand']] },
+      {
+        sku: 'VZ-KUR-IVR-S',
+        price: 1899,
+        compareAtPrice: 2399,
+        stock: 14,
+        options: [
+          ['Size', 'S'],
+          ['Colour', 'Ivory'],
+        ],
+      },
+      {
+        sku: 'VZ-KUR-IVR-M',
+        price: 1899,
+        compareAtPrice: 2399,
+        stock: 2,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Ivory'],
+        ],
+      },
+      {
+        sku: 'VZ-KUR-IVR-L',
+        price: 1899,
+        compareAtPrice: 2399,
+        stock: 9,
+        options: [
+          ['Size', 'L'],
+          ['Colour', 'Ivory'],
+        ],
+      },
+      {
+        sku: 'VZ-KUR-SND-M',
+        price: 1899,
+        stock: 11,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Sand'],
+        ],
+      },
     ],
   },
   {
@@ -178,15 +241,50 @@ const PRODUCTS: ProductSeed[] = [
     brand: 'Vennzya',
     careInstructions: 'Dry clean recommended. Cool iron on reverse. Store on a padded hanger.',
     seoTitle: 'Espresso Satin Bias-Cut Midi Dress',
-    seoDescription: 'Bias-cut satin midi dress in deep espresso. Fluid drape, covered buttons, sizes XS–XL.',
+    seoDescription:
+      'Bias-cut satin midi dress in deep espresso. Fluid drape, covered buttons, sizes XS–XL.',
     isFeatured: true,
     optionNames: ['Size', 'Colour'],
     images: [img('photo-1581044777550-4cfa60707c03'), img('photo-1594633312681-425c7b97ccd1')],
     variants: [
-      { sku: 'VZ-DRS-ESP-S', price: 2499, compareAtPrice: 3199, stock: 8, options: [['Size', 'S'], ['Colour', 'Espresso']] },
-      { sku: 'VZ-DRS-ESP-M', price: 2499, compareAtPrice: 3199, stock: 12, options: [['Size', 'M'], ['Colour', 'Espresso']] },
-      { sku: 'VZ-DRS-NOI-M', price: 2499, stock: 6, options: [['Size', 'M'], ['Colour', 'Noir']] },
-      { sku: 'VZ-DRS-NOI-L', price: 2499, stock: 4, options: [['Size', 'L'], ['Colour', 'Noir']] },
+      {
+        sku: 'VZ-DRS-ESP-S',
+        price: 2499,
+        compareAtPrice: 3199,
+        stock: 8,
+        options: [
+          ['Size', 'S'],
+          ['Colour', 'Espresso'],
+        ],
+      },
+      {
+        sku: 'VZ-DRS-ESP-M',
+        price: 2499,
+        compareAtPrice: 3199,
+        stock: 12,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Espresso'],
+        ],
+      },
+      {
+        sku: 'VZ-DRS-NOI-M',
+        price: 2499,
+        stock: 6,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Noir'],
+        ],
+      },
+      {
+        sku: 'VZ-DRS-NOI-L',
+        price: 2499,
+        stock: 4,
+        options: [
+          ['Size', 'L'],
+          ['Colour', 'Noir'],
+        ],
+      },
     ],
   },
   {
@@ -199,14 +297,22 @@ const PRODUCTS: ProductSeed[] = [
     hsnCode: '6204',
     gstRatePercent: 12,
     brand: 'Vennzya',
-    careInstructions: 'Dry clean only. Store folded in muslin, refold along different lines each season.',
+    careInstructions:
+      'Dry clean only. Store folded in muslin, refold along different lines each season.',
     seoTitle: 'Sand Tissue Linen Saree with Zari Border',
-    seoDescription: 'Featherweight tissue linen saree in sand with a fine zari border and unstitched blouse piece.',
+    seoDescription:
+      'Featherweight tissue linen saree in sand with a fine zari border and unstitched blouse piece.',
     isFeatured: false,
     optionNames: ['Colour'],
     images: [img('photo-1445205170230-053b83016050'), img('photo-1490481651871-ab68de25d43d')],
     variants: [
-      { sku: 'VZ-SAR-SND-OS', price: 3499, compareAtPrice: 4299, stock: 0, options: [['Colour', 'Sand']] },
+      {
+        sku: 'VZ-SAR-SND-OS',
+        price: 3499,
+        compareAtPrice: 4299,
+        stock: 0,
+        options: [['Colour', 'Sand']],
+      },
       { sku: 'VZ-SAR-IVR-OS', price: 3499, stock: 0, options: [['Colour', 'Ivory']] },
     ],
   },
@@ -220,17 +326,51 @@ const PRODUCTS: ProductSeed[] = [
     hsnCode: '6204',
     gstRatePercent: 12,
     brand: 'Vennzya',
-    careInstructions: 'Machine wash cold on gentle cycle. Line dry. Steam or press while slightly damp.',
+    careInstructions:
+      'Machine wash cold on gentle cycle. Line dry. Steam or press while slightly damp.',
     seoTitle: 'Olive Washed Linen Co-ord Set',
-    seoDescription: 'Washed linen co-ord set in olive — camp-collar shirt and wide-leg trousers. Sizes S–XL.',
+    seoDescription:
+      'Washed linen co-ord set in olive — camp-collar shirt and wide-leg trousers. Sizes S–XL.',
     isFeatured: false,
     optionNames: ['Size', 'Colour'],
     images: [img('photo-1523381210434-271e8be1f52b'), img('photo-1551232864-3f0890e580d9')],
     variants: [
-      { sku: 'VZ-COR-OLV-S', price: 2799, stock: 7, options: [['Size', 'S'], ['Colour', 'Olive']] },
-      { sku: 'VZ-COR-OLV-M', price: 2799, stock: 10, options: [['Size', 'M'], ['Colour', 'Olive']] },
-      { sku: 'VZ-COR-OLV-L', price: 2799, stock: 5, options: [['Size', 'L'], ['Colour', 'Olive']] },
-      { sku: 'VZ-COR-SND-M', price: 2799, stock: 3, options: [['Size', 'M'], ['Colour', 'Sand']] },
+      {
+        sku: 'VZ-COR-OLV-S',
+        price: 2799,
+        stock: 7,
+        options: [
+          ['Size', 'S'],
+          ['Colour', 'Olive'],
+        ],
+      },
+      {
+        sku: 'VZ-COR-OLV-M',
+        price: 2799,
+        stock: 10,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Olive'],
+        ],
+      },
+      {
+        sku: 'VZ-COR-OLV-L',
+        price: 2799,
+        stock: 5,
+        options: [
+          ['Size', 'L'],
+          ['Colour', 'Olive'],
+        ],
+      },
+      {
+        sku: 'VZ-COR-SND-M',
+        price: 2799,
+        stock: 3,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Sand'],
+        ],
+      },
     ],
   },
   {
@@ -245,14 +385,39 @@ const PRODUCTS: ProductSeed[] = [
     brand: 'Vennzya',
     careInstructions: 'Machine wash cold. Tumble dry low or line dry. Warm iron.',
     seoTitle: 'Cream Mercerised Cotton Wrap Top',
-    seoDescription: 'Softly gathered cotton wrap top in cream. Everyday layering piece, sizes XS–XL.',
+    seoDescription:
+      'Softly gathered cotton wrap top in cream. Everyday layering piece, sizes XS–XL.',
     isFeatured: false,
     optionNames: ['Size', 'Colour'],
     images: [img('photo-1620799140408-edc6dcb6d633'), img('photo-1441984904996-e0b6ba687e04')],
     variants: [
-      { sku: 'VZ-TOP-IVR-XS', price: 899, stock: 15, options: [['Size', 'XS'], ['Colour', 'Ivory']] },
-      { sku: 'VZ-TOP-IVR-S', price: 899, stock: 18, options: [['Size', 'S'], ['Colour', 'Ivory']] },
-      { sku: 'VZ-TOP-ROS-M', price: 899, stock: 12, options: [['Size', 'M'], ['Colour', 'Rose']] },
+      {
+        sku: 'VZ-TOP-IVR-XS',
+        price: 899,
+        stock: 15,
+        options: [
+          ['Size', 'XS'],
+          ['Colour', 'Ivory'],
+        ],
+      },
+      {
+        sku: 'VZ-TOP-IVR-S',
+        price: 899,
+        stock: 18,
+        options: [
+          ['Size', 'S'],
+          ['Colour', 'Ivory'],
+        ],
+      },
+      {
+        sku: 'VZ-TOP-ROS-M',
+        price: 899,
+        stock: 12,
+        options: [
+          ['Size', 'M'],
+          ['Colour', 'Rose'],
+        ],
+      },
     ],
   },
   {
@@ -265,16 +430,43 @@ const PRODUCTS: ProductSeed[] = [
     hsnCode: '7117',
     gstRatePercent: 3,
     brand: 'Vennzya',
-    careInstructions: 'Keep away from perfume and moisture. Wipe with a dry cloth and store in the pouch provided.',
+    careInstructions:
+      'Keep away from perfume and moisture. Wipe with a dry cloth and store in the pouch provided.',
     seoTitle: 'Kundan Statement Drop Earrings',
-    seoDescription: 'Gold-finish kundan statement earrings with pearl fringe. Lightweight with screw-back fittings.',
+    seoDescription:
+      'Gold-finish kundan statement earrings with pearl fringe. Lightweight with screw-back fittings.',
     isFeatured: true,
     optionNames: ['Metal', 'Stone'],
     images: [img('photo-1617038220319-276d3cfab638'), img('photo-1608042314453-ae338d80c427')],
     variants: [
-      { sku: 'VZ-EAR-GLD-KUN', price: 1299, compareAtPrice: 1699, stock: 22, options: [['Metal', 'Gold'], ['Stone', 'Kundan']] },
-      { sku: 'VZ-EAR-GLD-EMR', price: 1499, stock: 9, options: [['Metal', 'Gold'], ['Stone', 'Emerald']] },
-      { sku: 'VZ-EAR-RSG-KUN', price: 1199, stock: 4, options: [['Metal', 'Rose Gold'], ['Stone', 'Kundan']] },
+      {
+        sku: 'VZ-EAR-GLD-KUN',
+        price: 1299,
+        compareAtPrice: 1699,
+        stock: 22,
+        options: [
+          ['Metal', 'Gold'],
+          ['Stone', 'Kundan'],
+        ],
+      },
+      {
+        sku: 'VZ-EAR-GLD-EMR',
+        price: 1499,
+        stock: 9,
+        options: [
+          ['Metal', 'Gold'],
+          ['Stone', 'Emerald'],
+        ],
+      },
+      {
+        sku: 'VZ-EAR-RSG-KUN',
+        price: 1199,
+        stock: 4,
+        options: [
+          ['Metal', 'Rose Gold'],
+          ['Stone', 'Kundan'],
+        ],
+      },
     ],
   },
   {
@@ -287,16 +479,43 @@ const PRODUCTS: ProductSeed[] = [
     hsnCode: '7117',
     gstRatePercent: 3,
     brand: 'Vennzya',
-    careInstructions: 'Put on after perfume, remove before bathing. Store flat to prevent tangling.',
+    careInstructions:
+      'Put on after perfume, remove before bathing. Store flat to prevent tangling.',
     seoTitle: 'Layered Pearl Drop Necklace',
-    seoDescription: 'Two-strand layered necklace with a baroque pearl drop and adjustable extender chain.',
+    seoDescription:
+      'Two-strand layered necklace with a baroque pearl drop and adjustable extender chain.',
     isFeatured: true,
     optionNames: ['Metal', 'Stone'],
     images: [img('photo-1611085583191-a3b181a88401'), img('photo-1599643478518-a784e5dc4c8f')],
     variants: [
-      { sku: 'VZ-NEC-GLD-PRL', price: 1799, compareAtPrice: 2299, stock: 16, options: [['Metal', 'Gold'], ['Stone', 'Pearl']] },
-      { sku: 'VZ-NEC-RSG-PRL', price: 1899, stock: 7, options: [['Metal', 'Rose Gold'], ['Stone', 'Pearl']] },
-      { sku: 'VZ-NEC-SLV-PRL', price: 1699, stock: 11, options: [['Metal', 'Silver'], ['Stone', 'Pearl']] },
+      {
+        sku: 'VZ-NEC-GLD-PRL',
+        price: 1799,
+        compareAtPrice: 2299,
+        stock: 16,
+        options: [
+          ['Metal', 'Gold'],
+          ['Stone', 'Pearl'],
+        ],
+      },
+      {
+        sku: 'VZ-NEC-RSG-PRL',
+        price: 1899,
+        stock: 7,
+        options: [
+          ['Metal', 'Rose Gold'],
+          ['Stone', 'Pearl'],
+        ],
+      },
+      {
+        sku: 'VZ-NEC-SLV-PRL',
+        price: 1699,
+        stock: 11,
+        options: [
+          ['Metal', 'Silver'],
+          ['Stone', 'Pearl'],
+        ],
+      },
     ],
   },
   {
@@ -311,13 +530,30 @@ const PRODUCTS: ProductSeed[] = [
     brand: 'Vennzya',
     careInstructions: 'Wipe with a soft dry cloth. Keep away from perfume and polishing compounds.',
     seoTitle: 'Gold Filigree Bangle Set of Four',
-    seoDescription: 'Hand-finished gold filigree bangle set of four with varied textures. Available in two finishes.',
+    seoDescription:
+      'Hand-finished gold filigree bangle set of four with varied textures. Available in two finishes.',
     isFeatured: false,
     optionNames: ['Metal', 'Stone'],
     images: [img('photo-1611591437281-460bfbe1220a'), img('photo-1584302179602-e4c3d3fd629d')],
     variants: [
-      { sku: 'VZ-BNG-GLD-NON', price: 999, stock: 20, options: [['Metal', 'Gold'], ['Stone', 'None']] },
-      { sku: 'VZ-BNG-RSG-NON', price: 1099, stock: 13, options: [['Metal', 'Rose Gold'], ['Stone', 'None']] },
+      {
+        sku: 'VZ-BNG-GLD-NON',
+        price: 999,
+        stock: 20,
+        options: [
+          ['Metal', 'Gold'],
+          ['Stone', 'None'],
+        ],
+      },
+      {
+        sku: 'VZ-BNG-RSG-NON',
+        price: 1099,
+        stock: 13,
+        options: [
+          ['Metal', 'Rose Gold'],
+          ['Stone', 'None'],
+        ],
+      },
     ],
   },
   {
@@ -330,14 +566,22 @@ const PRODUCTS: ProductSeed[] = [
     hsnCode: '4202',
     gstRatePercent: 12,
     brand: 'Vennzya',
-    careInstructions: 'Condition with a neutral leather balm twice a year. Keep away from prolonged direct sun.',
+    careInstructions:
+      'Condition with a neutral leather balm twice a year. Keep away from prolonged direct sun.',
     seoTitle: 'Espresso Full-Grain Leather Tote Bag',
-    seoDescription: 'Structured full-grain leather tote in espresso. Fits a 14-inch laptop, hand-burnished edges.',
+    seoDescription:
+      'Structured full-grain leather tote in espresso. Fits a 14-inch laptop, hand-burnished edges.',
     isFeatured: true,
     optionNames: ['Colour'],
     images: [img('photo-1600857062241-98e5dba7f214'), img('photo-1479064555552-3ef4979f8908')],
     variants: [
-      { sku: 'VZ-BAG-TOT-ESP', price: 3999, compareAtPrice: 4999, stock: 9, options: [['Colour', 'Espresso']] },
+      {
+        sku: 'VZ-BAG-TOT-ESP',
+        price: 3999,
+        compareAtPrice: 4999,
+        stock: 9,
+        options: [['Colour', 'Espresso']],
+      },
       { sku: 'VZ-BAG-TOT-NOI', price: 3999, stock: 6, options: [['Colour', 'Noir']] },
     ],
   },
@@ -353,7 +597,8 @@ const PRODUCTS: ProductSeed[] = [
     brand: 'Vennzya',
     careInstructions: 'Spot clean with a damp cloth. Air dry away from direct heat.',
     seoTitle: 'Sand Quilted Crossbody Sling Bag',
-    seoDescription: 'Compact quilted sling bag in sand with an adjustable webbing strap and magnetic flap.',
+    seoDescription:
+      'Compact quilted sling bag in sand with an adjustable webbing strap and magnetic flap.',
     isFeatured: false,
     optionNames: ['Colour'],
     images: [img('photo-1606522754091-a3bbf9ad4cb3'), img('photo-1600857062241-98e5dba7f214')],
@@ -375,12 +620,19 @@ const PRODUCTS: ProductSeed[] = [
     brand: 'Vennzya',
     careInstructions: 'Hand wash cold or machine wash in a mesh bag. Dry flat in shade.',
     seoTitle: 'Ivory Modal Scarf with Hand-Knotted Fringe',
-    seoDescription: 'Featherweight modal scarf in ivory with hand-knotted fringe. Seasonless everyday wrap.',
+    seoDescription:
+      'Featherweight modal scarf in ivory with hand-knotted fringe. Seasonless everyday wrap.',
     isFeatured: true,
     optionNames: ['Colour'],
     images: [img('photo-1434389677669-e08b4cac3105'), img('photo-1620799140408-edc6dcb6d633')],
     variants: [
-      { sku: 'VZ-SCF-IVR-OS', price: 799, compareAtPrice: 999, stock: 25, options: [['Colour', 'Ivory']] },
+      {
+        sku: 'VZ-SCF-IVR-OS',
+        price: 799,
+        compareAtPrice: 999,
+        stock: 25,
+        options: [['Colour', 'Ivory']],
+      },
       { sku: 'VZ-SCF-OLV-OS', price: 799, stock: 17, options: [['Colour', 'Olive']] },
       { sku: 'VZ-SCF-ROS-OS', price: 799, stock: 2, options: [['Colour', 'Rose']] },
     ],
@@ -397,7 +649,8 @@ const PRODUCTS: ProductSeed[] = [
     brand: 'Vennzya',
     careInstructions: 'Wipe the buckle with a dry cloth. Store rolled rather than folded.',
     seoTitle: 'Tan Woven Stretch Belt with Brass Buckle',
-    seoDescription: 'Elasticated woven belt in tan with a brushed brass buckle. Fastens at any point along the weave.',
+    seoDescription:
+      'Elasticated woven belt in tan with a brushed brass buckle. Fastens at any point along the weave.',
     isFeatured: false,
     optionNames: ['Colour'],
     images: [img('photo-1479064555552-3ef4979f8908'), img('photo-1600857062241-98e5dba7f214')],
@@ -408,7 +661,13 @@ const PRODUCTS: ProductSeed[] = [
   },
 ]
 
-const COLLECTIONS: { slug: string; title: string; description: string; imageUrl: string; productSlugs: string[] }[] = [
+const COLLECTIONS: {
+  slug: string
+  title: string
+  description: string
+  imageUrl: string
+  productSlugs: string[]
+}[] = [
   {
     slug: 'new-arrivals',
     title: 'New Arrivals',
@@ -426,7 +685,8 @@ const COLLECTIONS: { slug: string; title: string; description: string; imageUrl:
   {
     slug: 'festive-edit',
     title: 'Festive Edit',
-    description: 'Pieces chosen for the season of long evenings, longer dinners and family photographs.',
+    description:
+      'Pieces chosen for the season of long evenings, longer dinners and family photographs.',
     imageUrl: img('photo-1445205170230-053b83016050'),
     productSlugs: [
       'sand-tissue-linen-saree',
@@ -556,7 +816,8 @@ const CONTENT_PAGES = [
     pageKey: 'privacy',
     title: 'Privacy Policy',
     seoTitle: 'Privacy Policy',
-    seoDescription: 'How Vennzya Fashion Hub collects, uses and protects your personal information.',
+    seoDescription:
+      'How Vennzya Fashion Hub collects, uses and protects your personal information.',
     bodyMarkdown: `${PLACEHOLDER_NOTICE}
 
 ## What we collect

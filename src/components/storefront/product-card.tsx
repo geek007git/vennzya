@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Badge } from '@/components/ui/primitives'
 import { formatInrCompact } from '@/lib/format'
 import { cn } from '@/lib/utils'
 import type { ProductCardView } from '@/modules/catalog/service'
-import { Badge } from '@/components/ui/primitives'
 
 function discountPercent(price: number, compareAt: number | null): number | null {
   if (!compareAt || compareAt <= price) return null
@@ -85,7 +85,9 @@ export function ProductCard({
           </h3>
           <p className="flex items-baseline gap-2 text-sm">
             <span className="font-semibold text-foreground">
-              {product.hasPriceRange ? `From ${formatInrCompact(product.price)}` : formatInrCompact(product.price)}
+              {product.hasPriceRange
+                ? `From ${formatInrCompact(product.price)}`
+                : formatInrCompact(product.price)}
             </span>
             {product.compareAtPrice && product.compareAtPrice > product.price && (
               <span className="text-xs text-muted-foreground line-through">

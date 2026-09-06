@@ -1,5 +1,5 @@
 import { addTaxSplits, extractGst, isIntraState, SHIPPING_GST_RATE } from '@/lib/gst'
-import { money, round2, sum, ZERO, type Money } from '@/lib/money'
+import { type Money, money, round2, sum, ZERO } from '@/lib/money'
 
 /**
  * Pure pricing maths — no database, no I/O — so it can be unit tested against

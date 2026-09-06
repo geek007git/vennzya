@@ -36,9 +36,7 @@ const PAYMENT_LABEL: Record<string, string> = {
 export default async function OrderConfirmationPage({ params, searchParams }: PageProps) {
   const [{ orderId }, { token }] = await Promise.all([params, searchParams])
 
-  const order = await trpc.orders
-    .byId({ orderId, ...(token ? { token } : {}) })
-    .catch(() => null)
+  const order = await trpc.orders.byId({ orderId, ...(token ? { token } : {}) }).catch(() => null)
 
   if (!order) notFound()
 
