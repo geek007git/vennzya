@@ -46,6 +46,9 @@ const PAYMENT_METHOD_LABEL: Record<OrderReceiptProps['order']['paymentMethod'], 
 /** Feed duration must match `--animate-receipt-feed` in globals.css. */
 const FEED_MS = 1600
 
+/** Static so the decorative grille never re-keys. */
+const VENT_SLOTS = Array.from({ length: 26 }, (_, index) => `vent-${index}`)
+
 function Line({
   label,
   value,
@@ -100,32 +103,50 @@ export function OrderReceipt({ className, order }: OrderReceiptProps) {
       aria-label="Order receipt"
       className={cn('receipt mx-auto flex w-full max-w-sm flex-col items-center', className)}
     >
-      {/* Printer body. Purely decorative chrome — the receipt below carries the data. */}
+      {/* The terminal. Purely decorative chrome — the paper below carries the data. */}
       <div
         aria-hidden
-        className="relative z-20 w-full rounded-[var(--radius-card)] border border-espresso-300 bg-linear-to-b from-cream-50 to-espresso-100 p-3 shadow-[var(--shadow-card)] print:hidden"
+        className="pos-shell relative z-20 w-full rounded-[1.25rem] border border-white/8 px-4 pt-4 pb-3.5 shadow-[0_1px_0_rgb(255_255_255/0.06)_inset,0_22px_44px_-20px_rgb(20_16_13/0.75)] print:hidden"
       >
-        <div className="flex items-center justify-between px-1 pb-3">
-          <span className="font-display text-sm font-semibold tracking-tight text-espresso-900">
+        {/* Moulded side grips. */}
+        <span className="absolute inset-y-6 -left-px w-px rounded-full bg-linear-to-b from-transparent via-white/12 to-transparent" />
+        <span className="absolute inset-y-6 -right-px w-px rounded-full bg-linear-to-b from-transparent via-white/12 to-transparent" />
+
+        <div className="flex items-center justify-between">
+          <span className="font-display text-[11px] font-semibold tracking-[0.3em] text-cream-100/90 uppercase">
             {siteConfig.shortName}
           </span>
-          <span className="flex items-center gap-1.5 text-[11px] text-espresso-600">
+          <span className="flex items-center gap-2 text-[10px] tracking-[0.14em] text-cream-200/55 uppercase">
             <span
               className={cn(
                 'size-1.5 rounded-full',
                 printed
-                  ? 'bg-[color:var(--success)]'
-                  : 'animate-pulse bg-espresso-500 motion-reduce:animate-none',
+                  ? 'bg-[color:var(--success)] shadow-[0_0_7px_1px_color-mix(in_oklab,var(--success)_75%,transparent)]'
+                  : 'animate-pulse bg-amber-400 shadow-[0_0_7px_1px_rgb(251_191_36/0.7)] motion-reduce:animate-none',
               )}
             />
-            {printed ? 'Receipt printed' : 'Printing receipt'}
+            {printed ? 'Ready' : 'Printing'}
           </span>
         </div>
-        <div className="h-2.5 rounded-full bg-espresso-900 shadow-[inset_0_1px_2px_rgb(255_255_255/0.25)]" />
+
+        {/* Vent grille — the detail that reads as hardware rather than a card. */}
+        <div className="mt-3.5 flex items-center gap-[3px]">
+          {VENT_SLOTS.map((slot) => (
+            <span
+              className="h-2.5 flex-1 rounded-full bg-black/45 shadow-[0_1px_0_rgb(255_255_255/0.05)]"
+              key={slot}
+            />
+          ))}
+        </div>
+
+        {/* Recessed paper slot the receipt feeds out of. */}
+        <div className="mt-3.5 rounded-full bg-black/55 p-[3px] shadow-[0_1px_0_rgb(255_255_255/0.07)]">
+          <div className="h-2 rounded-full bg-black shadow-[inset_0_2px_3px_rgb(0_0_0/0.95),inset_0_-1px_0_rgb(255_255_255/0.06)]" />
+        </div>
       </div>
 
       {/* Feed window: the paper slides up from behind the printer body. */}
-      <div className="-mt-1.5 w-[calc(100%-1.5rem)] overflow-hidden print:mt-0 print:w-full print:overflow-visible">
+      <div className="-mt-2 w-[calc(100%-2rem)] overflow-hidden print:mt-0 print:w-full print:overflow-visible">
         <article
           className="receipt-paper animate-receipt-feed bg-white px-5 pt-6 pb-8 font-mono text-[12px] leading-relaxed text-espresso-950 shadow-[var(--shadow-card)] motion-reduce:animate-none print:animate-none print:shadow-none"
           data-testid="order-receipt"

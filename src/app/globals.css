@@ -175,6 +175,16 @@
     color: var(--color-muted-foreground);
   }
 
+  /* Matte-black POS terminal shell: a soft top light, plus a fine cross-grain
+     so the plastic reads as matte rather than a flat black rectangle. */
+  .pos-shell {
+    background-color: #14100d;
+    background-image:
+      radial-gradient(130% 100% at 50% -30%, rgb(255 255 255 / 0.11), transparent 62%),
+      repeating-linear-gradient(45deg, rgb(255 255 255 / 0.022) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(-45deg, rgb(0 0 0 / 0.22) 0 1px, transparent 1px 3px);
+  }
+
   /* Torn bottom edge of a till receipt: a strip of downward triangles masked
      off the last few pixels of the paper. */
   .receipt-paper {
